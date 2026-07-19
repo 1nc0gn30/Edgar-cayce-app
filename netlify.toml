@@ -1,0 +1,26 @@
+[build]
+  # No build step — static frontend + a single serverless function.
+  command = "npm install"
+  publish = "public"
+  functions = "netlify/functions"
+
+[functions]
+  # Bundle node_modules into the function so serverless-http + express ship.
+  node_bundler = "esbuild"
+
+# API routes -> serverless function (MUST come before the SPA fallback)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/api/health"
+  status = 200
+
+# SPA fallback (everything else serves the frontend shell)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
