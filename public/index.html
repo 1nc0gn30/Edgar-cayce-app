@@ -32,7 +32,7 @@ tailwind.config = {
 }
 </script>
 <style>
-:root{--accent:#d4af6a;--accent2:#8fb98f;--accent3:#c97a4a}
+:root{--bg:#070a0f;--panel:#0f141d;--card:#141b27;--card2:#1a2230;--accent:#d4af6a;--accent2:#8fb98f;--accent3:#c97a4a;--text:#f0e8d8;--muted:#7a8395;--border:rgba(212,175,106,0.15)}
 body{background:#070a0f;color:#f0e8d8;font-family:'Inter',sans-serif}
 .scroll-hide::-webkit-scrollbar{display:none}
 .scroll-hide{-ms-overflow-style:none;scrollbar-width:none}
@@ -41,10 +41,18 @@ body{background:#070a0f;color:#f0e8d8;font-family:'Inter',sans-serif}
 .view{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:90px;min-height:calc(100vh - 124px)}
 .fade-in{animation:fadeIn .4s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Nav */
+.nav-item{color:#7a8395}
 .nav-item.active{color:#d4af6a}
 .nav-item.active .nav-pill{background:rgba(212,175,106,0.16);box-shadow:0 0 16px rgba(212,175,106,0.25)}
 .nav-item.active .nav-pill::after{content:'';position:absolute;inset:-2px;border-radius:14px;border:1px solid rgba(212,175,106,0.3)}
 .nav-pill{position:relative}
+.nav-scroll{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.tab-btn{transition:all .2s}
+.tab-btn.active{background:rgba(212,175,106,0.15);color:#d4af6a;border-color:rgba(212,175,106,0.4)}
+
 .aura-ring{position:absolute;inset:-32px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,rgba(212,175,106,0.35) 18%,transparent 38%,rgba(143,185,143,0.3) 62%,transparent 82%);animation:spin 9s linear infinite;filter:blur(4px);opacity:.6}
 @keyframes spin{100%{transform:rotate(360deg)}}
 .breath{animation:breath 5s ease-in-out infinite}
@@ -80,32 +88,43 @@ input:focus,textarea:focus,button:focus{outline:none}
 .card-hover:active{transform:scale(.98)}
 .cat-badge{font-size:9px;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;font-weight:600}
 .divider-glow{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,106,0.4),transparent)}
-.stat-pill{background:linear-gradient(135deg,rgba(212,175,106,0.08),rgba(143,185,143,0.06));border:1px solid rgba(212,175,106,0.15)}
-.nav-scroll{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.nav-scroll::-webkit-scrollbar{display:none}
-.tab-btn{transition:all .2s}
-.tab-btn.active{background:rgba(212,175,106,0.15);color:#d4af6a;border-color:rgba(212,175,106,0.4)}
+.stat-pill{background:linear-gradient(135deg,rgba(212,175,106,0.08),rgba(143,185,143,0.06));border:1px solid rgba(212,175,106,0.15);color:#f0e8d8}
+
+/* Explicit color utilities so we don't depend on Tailwind JIT custom colors */
+.txt-accent{color:#d4af6a}.txt-accent2{color:#8fb98f}.txt-accent3{color:#c97a4a}
+.txt-text{color:#f0e8d8}.txt-muted{color:#7a8395}.txt-bg{color:#070a0f}
+.bg-panel{background:#0f141d}.bg-card{background:#141b27}.bg-card2{background:#1a2230}.bg-bg{background:#070a0f}
+.bg-accent{background:#d4af6a}.bg-accent2{background:#8fb98f}.bg-accent3{background:#c97a4a}
+.bd-border{border-color:rgba(212,175,106,0.15)}
+.bd-accent{border-color:rgba(212,175,106,0.4)}
+.bg-panel80{background:rgba(15,20,29,0.8)}
+.bg-bg60{background:rgba(7,10,15,0.6)}
+.bg-accent10{background:rgba(212,175,106,0.1)}
+.bg-accent15{background:rgba(212,175,106,0.15)}
+.bd-accent18{border-color:rgba(212,175,106,0.18)}
+.bd-accent60{border-color:rgba(212,175,106,0.6)}
+.ph-accent::placeholder{color:#7a8395}
 </style>
 </head>
 <body class="min-h-screen w-full flex flex-col hero-gradient">
 
 <!-- HEADER -->
-<header class="flex-none h-14 px-4 flex items-center justify-between border-b border-cayce-border bg-cayce-bg/80 backdrop-blur z-30 sticky top-0">
+<header class="flex-none h-14 px-4 flex items-center justify-between border-b bd-border bg-panel80 backdrop-blur z-30 sticky top-0">
   <div class="flex items-center gap-2.5">
-    <div class="relative w-9 h-9 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent3 flex items-center justify-center shadow-lg">
+    <div class="relative w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center shadow-lg">
       <div class="absolute inset-0 rounded-full" style="box-shadow:0 0 16px rgba(212,175,106,0.4)"></div>
-      <i class="fa-solid fa-eye text-cayce-bg text-xs relative z-10"></i>
+      <i class="fa-solid fa-eye txt-bg text-xs relative z-10"></i>
     </div>
     <div>
-      <h1 class="serif-title text-lg leading-none font-semibold text-cayce-accent glow-text">Edgar Cayce</h1>
-      <p class="text-[9px] text-cayce-muted tracking-[0.2em] uppercase">The Sleeping Prophet</p>
+      <h1 class="serif-title text-lg leading-none font-semibold txt-accent glow-text">Edgar Cayce</h1>
+      <p class="text-[9px] txt-muted tracking-[0.2em] uppercase">The Sleeping Prophet</p>
     </div>
   </div>
   <div class="flex items-center gap-1">
-    <button id="quoteBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center text-cayce-muted transition" title="Daily Quote">
+    <button id="quoteBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center txt-muted transition" title="Daily Quote">
       <i class="fa-solid fa-quote-left text-xs"></i>
     </button>
-    <button id="infoBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center text-cayce-muted transition">
+    <button id="infoBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center txt-muted transition">
       <i class="fa-regular fa-circle-question"></i>
     </button>
   </div>
@@ -118,29 +137,29 @@ input:focus,textarea:focus,button:focus{outline:none}
 <section id="view-engage" class="view fade-in px-4 pt-4 pb-2">
   <!-- Quote carousel -->
   <div id="quoteCarousel" class="glass-card rounded-2xl p-4 mb-5 text-center">
-    <i class="fa-solid fa-quote-left text-cayce-accent/40 text-sm mb-2"></i>
-    <p id="quoteText" class="serif-title text-lg italic text-cayce-text leading-relaxed quote-fade">"The spirit is the life, the mind is the builder, the physical is the result."</p>
-    <p class="text-[10px] text-cayce-muted mt-2 uppercase tracking-widest">— Edgar Cayce</p>
+    <i class="fa-solid fa-quote-left txt-accent/40 text-sm mb-2"></i>
+    <p id="quoteText" class="serif-title text-lg italic txt-text leading-relaxed quote-fade">"The spirit is the life, the mind is the builder, the physical is the result."</p>
+    <p class="text-[10px] txt-muted mt-2 uppercase tracking-widest">— Edgar Cayce</p>
   </div>
 
   <!-- Stats row -->
   <div class="grid grid-cols-3 gap-2 mb-5">
     <div class="stat-pill rounded-xl p-2.5 text-center">
-      <p class="serif-title text-2xl text-cayce-accent font-bold">14,306</p>
-      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Readings</p>
+      <p class="serif-title text-2xl txt-accent font-bold">14,306</p>
+      <p class="text-[9px] txt-muted uppercase tracking-wider">Readings</p>
     </div>
     <div class="stat-pill rounded-xl p-2.5 text-center">
-      <p class="serif-title text-2xl text-cayce-accent2 font-bold">44</p>
-      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Years</p>
+      <p class="serif-title text-2xl txt-accent2 font-bold">44</p>
+      <p class="text-[9px] txt-muted uppercase tracking-wider">Years</p>
     </div>
     <div class="stat-pill rounded-xl p-2.5 text-center">
-      <p class="serif-title text-2xl text-cayce-accent3 font-bold">9</p>
-      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Prophecies</p>
+      <p class="serif-title text-2xl txt-accent3 font-bold">9</p>
+      <p class="text-[9px] txt-muted uppercase tracking-wider">Prophecies</p>
     </div>
   </div>
 
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">Living Readings</h2>
-  <p class="text-xs text-cayce-muted mb-4">Real historical recordings from Edgar Cayce's trance sessions, 1901–1941. Tap a card to read the excerpt.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">Living Readings</h2>
+  <p class="text-xs txt-muted mb-4">Real historical recordings from Edgar Cayce's trance sessions, 1901–1941. Tap a card to read the excerpt.</p>
   <div id="scenariosList" class="space-y-3 mb-5"></div>
 
   <div class="divider-glow mb-4"></div>
@@ -181,20 +200,20 @@ input:focus,textarea:focus,button:focus{outline:none}
         <path d="M 40 63 Q 50 67 60 63" stroke="#2e2418" stroke-width="2.5" fill="none" opacity="0.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <p id="edgarState" class="serif-title text-base italic text-cayce-accent2 mb-0.5">Edgar is resting.</p>
-    <p class="text-[11px] text-cayce-muted max-w-[18rem]">Ask your own question below.</p>
+    <p id="edgarState" class="serif-title text-base italic txt-accent2 mb-0.5">Edgar is resting.</p>
+    <p class="text-[11px] txt-muted max-w-[18rem]">Ask your own question below.</p>
   </div>
 
-  <div class="bg-cayce-panel rounded-2xl border border-cayce-border overflow-hidden">
-    <div class="flex-none px-3 py-2 border-b border-cayce-border flex items-center justify-between">
-      <div class="flex items-center gap-2"><span class="pulse-dot"></span><span class="text-[10px] uppercase tracking-widest text-cayce-accent">Reading Channel</span></div>
-      <button id="clearChat" class="text-[10px] text-cayce-muted hover:text-cayce-text">Clear</button>
+  <div class="bg-panel rounded-2xl border bd-border overflow-hidden">
+    <div class="flex-none px-3 py-2 border-b bd-border flex items-center justify-between">
+      <div class="flex items-center gap-2"><span class="pulse-dot"></span><span class="text-[10px] uppercase tracking-widest txt-accent">Reading Channel</span></div>
+      <button id="clearChat" class="text-[10px] txt-muted hover:txt-text">Clear</button>
     </div>
     <div id="messages" class="overflow-y-auto scroll-hide p-3 space-y-3 max-h-64"></div>
-    <div class="flex-none p-2.5 border-t border-cayce-border">
+    <div class="flex-none p-2.5 border-t bd-border">
       <form id="chatForm" class="flex gap-2">
-        <input id="chatInput" type="text" autocomplete="off" placeholder="Ask Edgar..." class="flex-1 bg-cayce-bg border border-cayce-border rounded-full px-4 py-2.5 text-sm placeholder:text-cayce-muted focus:border-cayce-accent/60 focus:ring-1 focus:ring-cayce-accent/30">
-        <button type="submit" class="w-10 h-10 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent3 text-cayce-bg flex items-center justify-center hover:brightness-110 transition shrink-0">
+        <input id="chatInput" type="text" autocomplete="off" placeholder="Ask Edgar..." class="flex-1 bg-bg border bd-border rounded-full px-4 py-2.5 text-sm placeholder:txt-muted focus:bd-accent60 focus:ring-1 focus:ring-amber-500/30">
+        <button type="submit" class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 txt-bg flex items-center justify-center hover:brightness-110 transition shrink-0">
           <i class="fa-solid fa-paper-plane text-sm"></i>
         </button>
       </form>
@@ -204,56 +223,56 @@ input:focus,textarea:focus,button:focus{outline:none}
 
 <!-- LIFE VIEW -->
 <section id="view-life" class="view fade-in px-4 pt-4 pb-2 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">The Life of Edgar Cayce</h2>
-  <p class="text-xs text-cayce-muted mb-5">From Kentucky farm boy to "The Sleeping Prophet" — 1877 to 1945.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">The Life of Edgar Cayce</h2>
+  <p class="text-xs txt-muted mb-5">From Kentucky farm boy to "The Sleeping Prophet" — 1877 to 1945.</p>
   <div class="relative pl-7 pb-8">
     <div class="timeline-line"></div>
     <div id="lifeTimeline" class="space-y-5"></div>
   </div>
   <div class="divider-glow mb-4"></div>
-  <h3 class="serif-title text-lg text-cayce-accent mb-3">People in Edgar's Orbit</h3>
-  <p class="text-xs text-cayce-muted mb-3">Famous figures connected to the Cayce readings.</p>
+  <h3 class="serif-title text-lg txt-accent mb-3">People in Edgar's Orbit</h3>
+  <p class="text-xs txt-muted mb-3">Famous figures connected to the Cayce readings.</p>
   <div id="peopleList" class="space-y-3"></div>
 </section>
 
 <!-- A.R.E. VIEW -->
 <section id="view-are" class="view fade-in px-4 pt-4 pb-2 hidden-view">
   <div class="glass-card rounded-2xl p-5 mb-5">
-    <h2 class="serif-title text-2xl text-cayce-text mb-1" id="areName"></h2>
+    <h2 class="serif-title text-2xl txt-text mb-1" id="areName"></h2>
     <div class="flex flex-wrap gap-2 mt-2 mb-3">
       <span class="cat-badge status-pending" id="areFounded"></span>
-      <span class="cat-badge stat-pill text-cayce-text" id="areAddress"></span>
+      <span class="cat-badge stat-pill txt-text" id="areAddress"></span>
     </div>
-    <p class="text-xs text-cayce-muted mb-2" id="areFounder"></p>
+    <p class="text-xs txt-muted mb-2" id="areFounder"></p>
     <div class="shimmer-bar mb-3"></div>
-    <p class="text-sm text-cayce-text leading-relaxed" id="areOverview"></p>
+    <p class="text-sm txt-text leading-relaxed" id="areOverview"></p>
   </div>
-  <h3 class="serif-title text-lg text-cayce-accent mb-3">Campus Features</h3>
+  <h3 class="serif-title text-lg txt-accent mb-3">Campus Features</h3>
   <div id="areFeatures" class="space-y-3 mb-6"></div>
   <div class="divider-glow mb-4"></div>
-  <h3 class="serif-title text-lg text-cayce-accent mb-3">Random & Must-Know Facts</h3>
+  <h3 class="serif-title text-lg txt-accent mb-3">Random & Must-Know Facts</h3>
   <div id="areFacts" class="space-y-2.5"></div>
 </section>
 
 <!-- READINGS VIEW -->
 <section id="view-readings" class="view fade-in px-4 pt-4 pb-2 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">The Readings</h2>
-  <p class="text-xs text-cayce-muted mb-1" id="readingsTotal"></p>
-  <p class="text-xs text-cayce-muted mb-4">Tap a category to expand and read sample excerpts.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">The Readings</h2>
+  <p class="text-xs txt-muted mb-1" id="readingsTotal"></p>
+  <p class="text-xs txt-muted mb-4">Tap a category to expand and read sample excerpts.</p>
   <div id="readingsCats" class="space-y-3"></div>
 </section>
 
 <!-- MYSTERIES VIEW -->
 <section id="view-mysteries" class="view fade-in px-4 pt-4 pb-2 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">Ancient Mysteries</h2>
-  <p class="text-xs text-cayce-muted mb-5">The prophesies and lost civilizations described in trance.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">Ancient Mysteries</h2>
+  <p class="text-xs txt-muted mb-5">The prophesies and lost civilizations described in trance.</p>
   <div id="mysteriesList" class="space-y-3"></div>
 </section>
 
 <!-- PROPHECIES VIEW -->
 <section id="view-prophecies" class="view fade-in px-4 pt-4 pb-2 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">Prophecies</h2>
-  <p class="text-xs text-cayce-muted mb-1">Cayce's predictions — fulfilled, unfulfilled, and pending.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">Prophecies</h2>
+  <p class="text-xs txt-muted mb-1">Cayce's predictions — fulfilled, unfulfilled, and pending.</p>
   <div class="flex gap-2 mb-4 text-[10px]">
     <span class="cat-badge status-fulfilled">Fulfilled</span>
     <span class="cat-badge status-unfulfilled">Unfulfilled</span>
@@ -264,16 +283,16 @@ input:focus,textarea:focus,button:focus{outline:none}
 
 <!-- REMEDIES VIEW -->
 <section id="view-remedies" class="view fade-in px-4 pt-4 pb-2 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">Cayce Remedies</h2>
-  <p class="text-xs text-cayce-muted mb-1">The actual health protocols prescribed in over 14,000 readings.</p>
-  <p class="text-[10px] text-cayce-accent3 mb-4 italic">For historical study. Not medical advice.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">Cayce Remedies</h2>
+  <p class="text-xs txt-muted mb-1">The actual health protocols prescribed in over 14,000 readings.</p>
+  <p class="text-[10px] txt-accent3 mb-4 italic">For historical study. Not medical advice.</p>
   <div id="remediesList" class="space-y-3"></div>
 </section>
 
 <!-- MEDITATE VIEW -->
 <section id="view-meditate" class="view fade-in px-4 pt-4 pb-2 hidden-view flex flex-col">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1">Meditate with Edgar</h2>
-  <p class="text-xs text-cayce-muted mb-4">Cayce-recommended meditation with affirmations.</p>
+  <h2 class="serif-title text-2xl txt-text mb-1">Meditate with Edgar</h2>
+  <p class="text-xs txt-muted mb-4">Cayce-recommended meditation with affirmations.</p>
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="relative w-44 h-44 mb-5">
       <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
@@ -282,22 +301,22 @@ input:focus,textarea:focus,button:focus{outline:none}
         <defs><linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#d4af6a"/><stop offset="100%" stop-color="#8fb98f"/></linearGradient></defs>
       </svg>
       <div class="absolute inset-0 flex flex-col items-center justify-center">
-        <span id="meditateTimer" class="serif-title text-4xl text-cayce-accent glow-text">10:00</span>
-        <span id="meditateState" class="text-[10px] uppercase tracking-widest text-cayce-muted mt-1">Ready</span>
+        <span id="meditateTimer" class="serif-title text-4xl txt-accent glow-text">10:00</span>
+        <span id="meditateState" class="text-[10px] uppercase tracking-widest txt-muted mt-1">Ready</span>
       </div>
     </div>
     <div class="flex gap-2 mb-5">
-      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted" data-min="5">5 min</button>
-      <button class="med-preset tab-btn active px-3 py-1.5 rounded-full border border-cayce-accent text-xs text-cayce-accent bg-cayce-accent/10" data-min="10">10 min</button>
-      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted" data-min="20">20 min</button>
+      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border bd-border text-xs txt-muted" data-min="5">5 min</button>
+      <button class="med-preset tab-btn active px-3 py-1.5 rounded-full border bd-accent text-xs txt-accent bg-accent10" data-min="10">10 min</button>
+      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border bd-border text-xs txt-muted" data-min="20">20 min</button>
     </div>
-    <button id="meditateToggle" class="px-6 py-3 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110 transition flex items-center gap-2 mb-4 shadow-lg">
+    <button id="meditateToggle" class="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-700 txt-bg font-medium text-sm hover:brightness-110 transition flex items-center gap-2 mb-4 shadow-lg">
       <i class="fa-solid fa-play"></i> Begin
     </button>
     <div id="affirmationBox" class="glass-card rounded-2xl p-4 max-w-sm text-center min-h-[80px] flex items-center justify-center">
-      <p id="affirmationText" class="serif-title text-lg italic text-cayce-accent2 leading-relaxed quote-fade">"Tap Begin to receive your affirmation."</p>
+      <p id="affirmationText" class="serif-title text-lg italic txt-accent2 leading-relaxed quote-fade">"Tap Begin to receive your affirmation."</p>
     </div>
-    <h3 class="serif-title text-lg text-cayce-accent mt-6 mb-2">The Six Steps</h3>
+    <h3 class="serif-title text-lg txt-accent mt-6 mb-2">The Six Steps</h3>
     <div id="meditateSteps" class="w-full max-w-sm space-y-2 mb-6"></div>
   </div>
 </section>
@@ -305,37 +324,37 @@ input:focus,textarea:focus,button:focus{outline:none}
 </main>
 
 <!-- BOTTOM NAV (scrollable on small screens) -->
-<nav class="flex-none bg-cayce-panel/95 backdrop-blur border-t border-cayce-border z-40 sticky bottom-0">
+<nav class="flex-none bg-panel backdrop-blur border-t bd-border z-40 sticky bottom-0">
   <div class="nav-scroll flex items-center px-1 py-1.5 gap-0.5 justify-start sm:justify-center">
-    <button class="nav-item active flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="engage">
+    <button class="nav-item active flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="engage">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-comments text-base"></i></span>
       <span class="text-[9px]">Engage</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="life">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="life">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-user-pen text-base"></i></span>
       <span class="text-[9px]">Life</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="are">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="are">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-building text-base"></i></span>
       <span class="text-[9px]">A.R.E.</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="readings">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="readings">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-book text-base"></i></span>
       <span class="text-[9px]">Readings</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="mysteries">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="mysteries">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-landmark text-base"></i></span>
       <span class="text-[9px]">Mysteries</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="prophecies">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="prophecies">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-crystal-ball text-base"></i></span>
       <span class="text-[9px]">Prophecies</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="remedies">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="remedies">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-mortar-pestle text-base"></i></span>
       <span class="text-[9px]">Remedies</span>
     </button>
-    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="meditate">
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 txt-muted transition min-w-[58px]" data-view="meditate">
       <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-om text-base"></i></span>
       <span class="text-[9px]">Meditate</span>
     </button>
@@ -345,20 +364,20 @@ input:focus,textarea:focus,button:focus{outline:none}
 <!-- INFO MODAL -->
 <div id="infoModal" class="modal-back hidden">
   <div class="glass-card rounded-2xl max-w-sm w-full p-5">
-    <h3 class="serif-title text-2xl text-cayce-accent mb-2 glow-text">A quiet companion</h3>
-    <p class="text-sm text-cayce-text leading-relaxed mb-4">Edgar Cayce (1877–1945) was an American psychic who gave over 14,000 readings in trance. This app is a contemplative tribute — for learning and reflection. It is not medical or spiritual advice.</p>
-    <button id="closeInfo" class="w-full py-2.5 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110">Enter</button>
+    <h3 class="serif-title text-2xl txt-accent mb-2 glow-text">A quiet companion</h3>
+    <p class="text-sm txt-text leading-relaxed mb-4">Edgar Cayce (1877–1945) was an American psychic who gave over 14,000 readings in trance. This app is a contemplative tribute — for learning and reflection. It is not medical or spiritual advice.</p>
+    <button id="closeInfo" class="w-full py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-700 txt-bg font-medium text-sm hover:brightness-110">Enter</button>
   </div>
 </div>
 
 <!-- QUOTE MODAL -->
 <div id="quoteModal" class="modal-back hidden">
   <div class="glass-card rounded-2xl max-w-sm w-full p-6 text-center">
-    <i class="fa-solid fa-quote-left text-cayce-accent/50 text-2xl mb-3"></i>
-    <p id="modalQuoteText" class="serif-title text-xl italic text-cayce-text leading-relaxed mb-3">"The spirit is the life..."</p>
-    <p class="text-[10px] text-cayce-muted uppercase tracking-widest mb-4">— Edgar Cayce</p>
-    <button id="nextQuote" class="text-xs text-cayce-accent border border-cayce-accent/40 rounded-full px-4 py-1.5 hover:bg-cayce-accent/10 transition mb-2">New quote <i class="fa-solid fa-shuffle ml-1"></i></button>
-    <button id="closeQuote" class="block w-full py-2 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110">Close</button>
+    <i class="fa-solid fa-quote-left txt-accent/50 text-2xl mb-3"></i>
+    <p id="modalQuoteText" class="serif-title text-xl italic txt-text leading-relaxed mb-3">"The spirit is the life..."</p>
+    <p class="text-[10px] txt-muted uppercase tracking-widest mb-4">— Edgar Cayce</p>
+    <button id="nextQuote" class="text-xs txt-accent border bd-accent rounded-full px-4 py-1.5 hover:bg-accent10 transition mb-2">New quote <i class="fa-solid fa-shuffle ml-1"></i></button>
+    <button id="closeQuote" class="block w-full py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-700 txt-bg font-medium text-sm hover:brightness-110">Close</button>
   </div>
 </div>
 
@@ -414,7 +433,7 @@ function addMsg(role,text){
   const w=document.createElement('div');
   w.className='flex gap-2 msg-in '+(role==='user'?'flex-row-reverse':'');
   if(role==='cayce'){
-    w.innerHTML=`<div class="w-7 h-7 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent2 flex items-center justify-center flex-none text-cayce-bg text-[10px]"><i class="fa-solid fa-eye"></i></div>
+    w.innerHTML=`<div class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-green-600 flex items-center justify-center flex-none txt-bg text-[10px]"><i class="fa-solid fa-eye"></i></div>
       <div class="bubble-cayce p-2.5 max-w-[82%]"><p class="text-[13px] leading-relaxed">${esc(text)}</p></div>`;
   } else {
     w.innerHTML=`<div class="bubble-user p-2.5 max-w-[82%]"><p class="text-[13px] leading-relaxed">${esc(text)}</p></div>`;
@@ -423,8 +442,8 @@ function addMsg(role,text){
 }
 function addLoading(){
   const w=document.createElement('div'); w.id='loadingMsg'; w.className='flex gap-2 msg-in';
-  w.innerHTML=`<div class="w-7 h-7 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent2 flex items-center justify-center flex-none text-cayce-bg text-[10px]"><i class="fa-solid fa-eye"></i></div>
-    <div class="bubble-cayce p-2.5"><span class="inline-flex gap-1"><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce"></span><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce" style="animation-delay:.12s"></span><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce" style="animation-delay:.24s"></span></span></div>`;
+  w.innerHTML=`<div class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-green-600 flex items-center justify-center flex-none txt-bg text-[10px]"><i class="fa-solid fa-eye"></i></div>
+    <div class="bubble-cayce p-2.5"><span class="inline-flex gap-1"><span class="w-1.5 h-1.5 rounded-full bg-accent animate-bounce"></span><span class="w-1.5 h-1.5 rounded-full bg-accent animate-bounce" style="animation-delay:.12s"></span><span class="w-1.5 h-1.5 rounded-full bg-accent animate-bounce" style="animation-delay:.24s"></span></span></div>`;
   messagesEl.appendChild(w); messagesEl.scrollTop=messagesEl.scrollHeight;
 }
 function rmLoading(){const el=document.getElementById('loadingMsg'); if(el) el.remove();}
@@ -458,10 +477,10 @@ async function loadLife(){
       <div class="absolute -left-7 top-1.5 timeline-dot"></div>
       <div class="glass-card rounded-xl p-3.5 card-hover">
         <div class="flex items-baseline gap-2 mb-1">
-          <span class="serif-title text-xl text-cayce-accent font-bold">${t.year}</span>
-          <span class="serif-title text-base text-cayce-text">${esc(t.title)}</span>
+          <span class="serif-title text-xl txt-accent font-bold">${t.year}</span>
+          <span class="serif-title text-base txt-text">${esc(t.title)}</span>
         </div>
-        <p class="text-xs text-cayce-muted leading-relaxed">${esc(t.body)}</p>
+        <p class="text-xs txt-muted leading-relaxed">${esc(t.body)}</p>
       </div>
     </div>`).join('');
 }
@@ -471,11 +490,11 @@ async function loadPeople(){
   const r=await fetch('/api/people'); const d=await r.json();
   document.getElementById('peopleList').innerHTML=d.map(p=>`
     <div class="glass-card rounded-xl p-3.5 card-hover flex gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/20 to-cayce-accent2/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-green-600/10 flex items-center justify-center txt-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
       <div class="flex-1 min-w-0">
-        <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(p.name)}</h4>
-        <p class="text-[10px] text-cayce-accent2 uppercase tracking-wider mb-1.5">${esc(p.role)}</p>
-        <p class="text-xs text-cayce-muted leading-relaxed">${esc(p.reading)}</p>
+        <h4 class="serif-title text-base txt-text leading-tight">${esc(p.name)}</h4>
+        <p class="text-[10px] txt-accent2 uppercase tracking-wider mb-1.5">${esc(p.role)}</p>
+        <p class="text-xs txt-muted leading-relaxed">${esc(p.reading)}</p>
       </div>
     </div>`).join('');
 }
@@ -491,13 +510,13 @@ async function loadAre(){
   document.getElementById('areFeatures').innerHTML=d.features.map(f=>`
     <div class="glass-card rounded-xl p-3.5 card-hover">
       <div class="shimmer-bar mb-2.5"></div>
-      <h4 class="serif-title text-base text-cayce-accent mb-1">${esc(f.title)}</h4>
-      <p class="text-xs text-cayce-muted leading-relaxed">${esc(f.body)}</p>
+      <h4 class="serif-title text-base txt-accent mb-1">${esc(f.title)}</h4>
+      <p class="text-xs txt-muted leading-relaxed">${esc(f.body)}</p>
     </div>`).join('');
   document.getElementById('areFacts').innerHTML=d.random_facts.map(f=>`
     <div class="glass-card rounded-xl p-3 flex gap-2.5 card-hover">
-      <i class="fa-solid fa-star text-cayce-accent text-xs mt-1"></i>
-      <p class="text-xs text-cayce-text leading-relaxed">${esc(f)}</p>
+      <i class="fa-solid fa-star txt-accent text-xs mt-1"></i>
+      <p class="text-xs txt-text leading-relaxed">${esc(f)}</p>
     </div>`).join('');
 }
 
@@ -508,16 +527,16 @@ async function loadReadings(){
   document.getElementById('readingsCats').innerHTML=d.categories.map((c,i)=>`
     <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-idx="${i}">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent2/10 flex items-center justify-center text-cayce-accent"><i class="fa-solid ${c.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/15 to-green-600/10 flex items-center justify-center txt-accent"><i class="fa-solid ${c.icon}"></i></div>
         <div class="flex-1 min-w-0">
-          <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(c.name)}</h4>
-          <p class="text-[10px] text-cayce-accent2">${esc(c.count)}</p>
+          <h4 class="serif-title text-base txt-text leading-tight">${esc(c.name)}</h4>
+          <p class="text-[10px] txt-accent2">${esc(c.count)}</p>
         </div>
-        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs"></i>
+        <i class="fa-solid fa-chevron-down chevron txt-muted text-xs"></i>
       </div>
       <div class="expand-body mt-3">
-        <p class="text-xs text-cayce-muted leading-relaxed mb-3">${esc(c.body)}</p>
-        ${c.samples.map(s=>`<div class="bg-cayce-bg/60 border border-cayce-border rounded-lg p-2.5 mb-2"><p class="serif-title text-sm italic text-cayce-accent2 leading-relaxed">${esc(s)}</p></div>`).join('')}
+        <p class="text-xs txt-muted leading-relaxed mb-3">${esc(c.body)}</p>
+        ${c.samples.map(s=>`<div class="bg-bg60 border bd-border rounded-lg p-2.5 mb-2"><p class="serif-title text-sm italic txt-accent2 leading-relaxed">${esc(s)}</p></div>`).join('')}
       </div>
     </div>`).join('');
   document.querySelectorAll('#readingsCats .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
@@ -529,15 +548,15 @@ async function loadMysteries(){
   document.getElementById('mysteriesList').innerHTML=d.map((m,i)=>`
     <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-idx="${i}">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg"><i class="fa-solid ${m.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/15 to-orange-700/10 flex items-center justify-center txt-accent text-lg"><i class="fa-solid ${m.icon}"></i></div>
         <div class="flex-1 min-w-0">
-          <h4 class="serif-title text-lg text-cayce-text leading-tight">${esc(m.title)}</h4>
-          <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(m.summary)}</p>
+          <h4 class="serif-title text-lg txt-text leading-tight">${esc(m.title)}</h4>
+          <p class="text-xs txt-muted leading-snug mt-0.5">${esc(m.summary)}</p>
         </div>
-        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs"></i>
+        <i class="fa-solid fa-chevron-down chevron txt-muted text-xs"></i>
       </div>
       <div class="expand-body mt-3">
-        ${m.details.map(det=>`<div class="flex gap-2 mb-2"><i class="fa-solid fa-circle text-cayce-accent text-[5px] mt-1.5"></i><p class="text-xs text-cayce-text leading-relaxed flex-1">${esc(det)}</p></div>`).join('')}
+        ${m.details.map(det=>`<div class="flex gap-2 mb-2"><i class="fa-solid fa-circle txt-accent text-[5px] mt-1.5"></i><p class="text-xs txt-text leading-relaxed flex-1">${esc(det)}</p></div>`).join('')}
       </div>
     </div>`).join('');
   document.querySelectorAll('#mysteriesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
@@ -551,23 +570,23 @@ async function loadProphecies(){
   document.getElementById('propheciesList').innerHTML=d.map(p=>`
     <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(p.id)}">
       <div class="flex items-start gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/15 to-orange-700/10 flex items-center justify-center txt-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-0.5 flex-wrap">
-            <span class="serif-title text-base text-cayce-accent font-bold">${p.year}</span>
+            <span class="serif-title text-base txt-accent font-bold">${p.year}</span>
             <span class="cat-badge ${statusClass[p.status]}">${statusLabel[p.status]}</span>
           </div>
-          <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(p.title)}</h4>
-          <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(p.summary)}</p>
+          <h4 class="serif-title text-base txt-text leading-tight">${esc(p.title)}</h4>
+          <p class="text-xs txt-muted leading-snug mt-0.5">${esc(p.summary)}</p>
         </div>
-        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs mt-2"></i>
+        <i class="fa-solid fa-chevron-down chevron txt-muted text-xs mt-2"></i>
       </div>
       <div class="expand-body mt-3">
-        <div class="bg-cayce-bg/60 border border-cayce-border rounded-lg p-3 mb-2">
-          <p class="text-[10px] uppercase tracking-widest text-cayce-accent mb-1.5">Reading Excerpt</p>
-          <p class="serif-title text-sm italic text-cayce-text leading-relaxed">${esc(p.excerpt)}</p>
+        <div class="bg-bg60 border bd-border rounded-lg p-3 mb-2">
+          <p class="text-[10px] uppercase tracking-widest txt-accent mb-1.5">Reading Excerpt</p>
+          <p class="serif-title text-sm italic txt-text leading-relaxed">${esc(p.excerpt)}</p>
         </div>
-        <p class="text-xs text-cayce-muted leading-relaxed"><i class="fa-solid fa-circle-info text-cayce-accent mr-1"></i>${esc(p.context)}</p>
+        <p class="text-xs txt-muted leading-relaxed"><i class="fa-solid fa-circle-info txt-accent mr-1"></i>${esc(p.context)}</p>
       </div>
     </div>`).join('');
   document.querySelectorAll('#propheciesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
@@ -579,22 +598,22 @@ async function loadRemedies(){
   document.getElementById('remediesList').innerHTML=d.map(rem=>`
     <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(rem.id)}">
       <div class="flex items-start gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent2/15 to-cayce-accent/10 flex items-center justify-center text-cayce-accent2 text-lg flex-none"><i class="fa-solid ${rem.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-600/15 to-amber-600/10 flex items-center justify-center txt-accent2 text-lg flex-none"><i class="fa-solid ${rem.icon}"></i></div>
         <div class="flex-1 min-w-0">
-          <span class="cat-badge stat-pill text-cayce-text mb-1 inline-block">${esc(rem.category)}</span>
-          <h4 class="serif-title text-base text-cayce-text leading-tight mt-1">${esc(rem.name)}</h4>
+          <span class="cat-badge stat-pill txt-text mb-1 inline-block">${esc(rem.category)}</span>
+          <h4 class="serif-title text-base txt-text leading-tight mt-1">${esc(rem.name)}</h4>
           <div class="flex flex-wrap gap-1 mt-1.5">
-            ${rem.used_for.map(u=>`<span class="text-[9px] bg-cayce-accent/10 text-cayce-accent px-1.5 py-0.5 rounded">${esc(u)}</span>`).join('')}
+            ${rem.used_for.map(u=>`<span class="text-[9px] bg-accent10 txt-accent px-1.5 py-0.5 rounded">${esc(u)}</span>`).join('')}
           </div>
         </div>
-        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs mt-2"></i>
+        <i class="fa-solid fa-chevron-down chevron txt-muted text-xs mt-2"></i>
       </div>
       <div class="expand-body mt-3">
-        <p class="text-[10px] uppercase tracking-widest text-cayce-accent2 mb-1">Protocol</p>
-        <p class="text-xs text-cayce-text leading-relaxed mb-3">${esc(rem.protocol)}</p>
-        <p class="text-[10px] uppercase tracking-widest text-cayce-accent2 mb-1">Modern Science</p>
-        <p class="text-xs text-cayce-muted leading-relaxed mb-3">${esc(rem.science)}</p>
-        <p class="text-[10px] text-cayce-accent3 italic"><i class="fa-solid fa-book mr-1"></i>${esc(rem.reading_ref)}</p>
+        <p class="text-[10px] uppercase tracking-widest txt-accent2 mb-1">Protocol</p>
+        <p class="text-xs txt-text leading-relaxed mb-3">${esc(rem.protocol)}</p>
+        <p class="text-[10px] uppercase tracking-widest txt-accent2 mb-1">Modern Science</p>
+        <p class="text-xs txt-muted leading-relaxed mb-3">${esc(rem.science)}</p>
+        <p class="text-[10px] txt-accent3 italic"><i class="fa-solid fa-book mr-1"></i>${esc(rem.reading_ref)}</p>
       </div>
     </div>`).join('');
   document.querySelectorAll('#remediesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
@@ -607,24 +626,24 @@ async function loadScenarios(){
     document.getElementById('scenariosList').innerHTML=d.map(s=>`
       <div class="scenario-card expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(s.id)}">
         <div class="flex items-start gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${s.icon}"></i></div>
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/15 to-orange-700/10 flex items-center justify-center txt-accent text-lg flex-none"><i class="fa-solid ${s.icon}"></i></div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-0.5 flex-wrap">
-              <span class="serif-title text-base text-cayce-accent font-bold">${s.year}</span>
-              <span class="cat-badge stat-pill text-cayce-text">${esc(s.category)}</span>
+              <span class="serif-title text-base txt-accent font-bold">${s.year}</span>
+              <span class="cat-badge stat-pill txt-text">${esc(s.category)}</span>
             </div>
-            <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(s.title)}</h4>
-            <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(s.summary)}</p>
+            <h4 class="serif-title text-base txt-text leading-tight">${esc(s.title)}</h4>
+            <p class="text-xs txt-muted leading-snug mt-0.5">${esc(s.summary)}</p>
           </div>
-          <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs mt-2"></i>
+          <i class="fa-solid fa-chevron-down chevron txt-muted text-xs mt-2"></i>
         </div>
         <div class="expand-body mt-3">
-          <p class="text-[10px] text-cayce-accent2 mb-2"><i class="fa-solid fa-user mr-1"></i>${esc(s.person)}</p>
-          <div class="bg-cayce-bg/60 border border-cayce-border rounded-lg p-3 mb-2">
-            <p class="text-[10px] uppercase tracking-widest text-cayce-accent mb-1.5">Reading Excerpt</p>
-            <p class="serif-title text-sm italic text-cayce-text leading-relaxed">${esc(s.excerpt)}</p>
+          <p class="text-[10px] txt-accent2 mb-2"><i class="fa-solid fa-user mr-1"></i>${esc(s.person)}</p>
+          <div class="bg-bg60 border bd-border rounded-lg p-3 mb-2">
+            <p class="text-[10px] uppercase tracking-widest txt-accent mb-1.5">Reading Excerpt</p>
+            <p class="serif-title text-sm italic txt-text leading-relaxed">${esc(s.excerpt)}</p>
           </div>
-          <p class="text-xs text-cayce-muted leading-relaxed"><i class="fa-solid fa-circle-info text-cayce-accent mr-1"></i>${esc(s.context)}</p>
+          <p class="text-xs txt-muted leading-relaxed"><i class="fa-solid fa-circle-info txt-accent mr-1"></i>${esc(s.context)}</p>
         </div>
       </div>`).join('');
     document.querySelectorAll('#scenariosList .scenario-card').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
@@ -660,8 +679,8 @@ function renderTimer(){const m=Math.floor(medSec/60), s=medSec%60; medTimerEl.te
 function renderProgress(total){const off = total>0 ? CIRC*(1 - medSec/total) : CIRC; medProgress.style.strokeDashoffset=off;}
 document.querySelectorAll('.med-preset').forEach(b=>b.addEventListener('click',()=>{
   if(medRunning) return;
-  document.querySelectorAll('.med-preset').forEach(x=>{x.classList.remove('active','text-cayce-accent','bg-cayce-accent/10','border-cayce-accent');x.classList.add('text-cayce-muted','border-cayce-border');});
-  b.classList.add('active','text-cayce-accent','bg-cayce-accent/10','border-cayce-accent'); b.classList.remove('text-cayce-muted','border-cayce-border');
+  document.querySelectorAll('.med-preset').forEach(x=>{x.classList.remove('active','txt-accent','bg-accent10','bd-accent');x.classList.add('txt-muted','bd-border');});
+  b.classList.add('active','txt-accent','bg-accent10','bd-accent'); b.classList.remove('txt-muted','bd-border');
   medMin=parseInt(b.dataset.min); medSec=medMin*60; renderTimer(); renderProgress(medSec*1);
 }));
 async function loadMeditations(){
@@ -669,8 +688,8 @@ async function loadMeditations(){
   window._affirmations=d.affirmations; window._steps=d.steps;
   document.getElementById('meditateSteps').innerHTML=d.steps.map(s=>`
     <div class="glass-card rounded-xl p-3 flex gap-3">
-      <div class="w-6 h-6 rounded-full bg-cayce-accent/15 text-cayce-accent flex items-center justify-center text-xs font-semibold flex-none">${s.num}</div>
-      <div><h5 class="serif-title text-sm text-cayce-text mb-0.5">${esc(s.title)}</h5><p class="text-[11px] text-cayce-muted leading-relaxed">${esc(s.body)}</p></div>
+      <div class="w-6 h-6 rounded-full bg-accent15 txt-accent flex items-center justify-center text-xs font-semibold flex-none">${s.num}</div>
+      <div><h5 class="serif-title text-sm txt-text mb-0.5">${esc(s.title)}</h5><p class="text-[11px] txt-muted leading-relaxed">${esc(s.body)}</p></div>
     </div>`).join('');
 }
 function newAffirmation(){

@@ -530,58 +530,162 @@ const meditations = {
 };
 
 // --- Engagement replies (keyword-aware, Cayce-voiced) ---
+// Each topic has multiple variants. craftReply() tracks recently-used replies
+// per-topic in memory to avoid repeating the same line back-to-back.
 const replyBank = {
   greeting: [
     'Welcome, friend. Sit a moment. What would you ask of the readings?',
-    'Peace be with you. The mind that is in attunement may receive. What is your question?'
+    'Peace be with you. The mind that is in attunement may receive. What is your question?',
+    'You have come. Rest the body, quiet the mind, and ask. I am here.',
+    'Greetings, seeker. The channel is open. Speak what is on the heart.'
   ],
   health: [
     'The body is the temple of the living soul. Cayce taught that disease begins in the mind before it manifests in the flesh. Castor oil packs over the liver, osteopathic adjustments, a clean diet — these he prescribed again and again.',
-    'For the body, remember: eliminate well, assimilate well, and keep right thinking. Cayce warned that anger, fear, and worry disturb the body\'s vibrations more than poor food.'
+    'For the body, remember: eliminate well, assimilate well, and keep right thinking. Cayce warned that anger, fear, and worry disturb the body\'s vibrations more than poor food.',
+    'Cayce\'s first principle of healing: the body heals itself when given the right conditions — rest, elimination, right attitude, and the natural remedies he prescribed in over 9,000 readings.',
+    'Look to the spine. Many of Cayce\'s physical readings returned again and again to osteopathic adjustments and the coordination between the nervous systems. The spine is the body\'s switchboard.',
+    'Castor oil packs, atomidine, slippery elm tea, the wet-cell appliance — these were his tools. He prescribed them not as cures, but as aids to the body\'s own healing intelligence.'
   ],
   dream: [
     'Dreams are the activity of the soul — the language of the subconscious speaking in symbol. Keep a notebook by your bed. Write the moment you wake, before the world intrudes.',
-    'In dreams, my friend, water is life, troubled water is emotion. Falling is the loss of control. Flying is expansion. Each symbol speaks to the soul\'s own state.'
+    'In dreams, my friend, water is life, troubled water is emotion. Falling is the loss of control. Flying is expansion. Each symbol speaks to the soul\'s own state.',
+    'Cayce gave over 630 dream readings. He insisted the dream be recorded before the body moves or speaks — for the soul\'s language fades fastest on waking.',
+    'Do not interpret the symbol alone, Cayce taught. Interpret the feeling the dream leaves upon the body. The soul speaks in atmosphere, not only in image.'
   ],
   reincarnation: [
     'Each soul returns, again and again, until it has learned what it came to learn. We meet the same souls — as parents, children, rivals — to balance what was once begun.',
-    'The entity known as Edgar was, in Egypt, the priest Ra-Ta. We all have lived. The question is not whether, but what we have made of each life.'
+    'The entity known as Edgar was, in Egypt, the priest Ra-Ta. We all have lived. The question is not whether, but what we have made of each life.',
+    'Karma is not punishment. It is the meeting of self. Each soul is given the chance to face what it once avoided — in love, in loss, in service.',
+    'From September 1923, Cayce gave over 1,900 Life Readings, tracing souls through Atlantis, Egypt, Persia, Rome, and the Americas. Each life was a lesson; each lesson a step toward the Creator.'
   ],
   atlantis: [
-    'Atlantis was. It sank in three upheavals. The Children of the Law of One fled to Egypt carrying records of their civilization. The Sphinx holds those records still.',
-    'Poseidia was the last land of Atlantis to sink, in 10,700 BC. The entity in that land was a keeper of records, a priest, an artisan — each soul had its part.'
+    'Atlantis was. It sank in three upheavals — the last in 10,700 BC. The Children of the Law of One fled to Egypt carrying records. The Sphinx holds those records still.',
+    'Poseidia was the last land of Atlantis to sink. The entity in that land was a keeper of records, a priest, an artisan — each soul had its part.',
+    'Two factions warred in Atlantis: the Children of the Law of One, who remembered the Creator, and the Sons of Belial, who sought power. The misuse of the crystal brought the final destruction.',
+    'Cayce said survivors carried records to three places: Egypt, the Yucatan, and a sunken chamber beneath Poseidia. The Hall of Records beneath the Sphinx awaits its opening.'
   ],
   purpose: [
     'Your purpose is not a job or a title. It is the soul\'s design — to love, to serve, to grow. Ask: where can I be of use today? There the purpose reveals itself.',
-    'Service is the price of peace of mind. The soul that serves finds itself; the soul that takes loses itself.'
+    'Service is the price of peace of mind. The soul that serves finds itself; the soul that takes loses itself.',
+    'Each soul enters the earth for a purpose, and that purpose is to learn to love God and to serve. The failures become the lessons.',
+    'Cayce taught: the mind is the builder. What you think upon, you become. Hold the ideal of service, and the path will make itself known.'
   ],
   virginia: [
     'Virginia Beach is where the work was built. A reading told us to go to Virginia, by the sea, and there the A.R.E. was founded in 1931. It stands there still.',
-    'The A.R.E. is at 215 67th Street, Virginia Beach. The reading chamber, the meditation garden, the archive of all 14,000 readings — all are there. Visitors welcome.'
+    'The A.R.E. is at 215 67th Street, Virginia Beach. The reading chamber, the meditation garden, the archive of all 14,000 readings — all are there. Visitors welcome.',
+    'A reading said: "In Virginia, by the sea, the work will be built." Edgar had never visited. He moved his family there in 1925 and the campus grew around him.'
+  ],
+  egypt: [
+    'In Egypt, the priest Ra-Ta (a past incarnation of Edgar) worked with Hermes to build the Great Pyramid as a temple of initiation, around 10,500 BC.',
+    'The Hall of Records lies between the paws of the Sphinx — a chamber lined with linseed holding the records of Atlantis and the first Egyptians. Cayce dated its opening to around 1998.',
+    'Cayce said the pyramids were not built by slaves but by those who understood the law. The Great Pyramid was a house of records and a temple of initiation for the masters who would lead.',
+    'The Essenes at Mt. Carmel prepared the way for the Christ. Cayce gave 171 readings on the Essenes, Mary, Joseph, and the hidden years of Jesus\'s life.'
+  ],
+  jesus: [
+    'Cayce spoke of the Christ consciousness — the pattern for every soul, not the man of Galilee alone. To seek the Christ within is the work of every lifetime.',
+    'Jesus was a member of the Essene community at Mt. Carmel, Cayce said. Mary and Joseph were Essenes. The readings fill in the hidden years the Gospels do not record.',
+    'The spirit is the life, the mind is the builder, the physical is the result — and the Christ is the pattern. So Cayce summarized the path.'
+  ],
+  akashic: [
+    'The Akashic Records are the Book of Life — the record of every soul\'s thoughts, actions, and lifetimes. In trance, Cayce read from them as from an open book.',
+    'Cayce would begin a reading: "Yes, we have the body and the record here." The record was not in a book on a shelf — it was in the attunement itself.',
+    'Every soul has a record. To read it, the mind must be attuned. Cayce\'s gift was not the information itself but the state of attunement that let him receive it.'
+  ],
+  meditation: [
+    'Prayer is asking. Meditation is listening. Both are needed. One without the other is half a conversation.',
+    'Cayce recommended meditation at sunrise, sitting upright, never lying down. Slow the breath, relax the body, raise the vibration, then sit in the silence and listen.',
+    'The affirmation is the rudder. Repeat it silently, with meaning, three to nine times. Then sit in the silence and receive. This is the attunement Cayce spoke of.',
+    'Healing of the physical without change in the mental and spiritual aspects brings little real help. Meditation is where the change begins.'
+  ],
+  prayer: [
+    'Prayer is the conscious mind speaking to the Creator. Meditation is the soul listening back. Cayce taught both — together they form the full conversation.',
+    'When you pray, believe you receive. Cayce echoed the Gospels: faith is the substance of things hoped for, the evidence of things not seen.'
+  ],
+  fear: [
+    'Fear is the opposite of faith. It disturbs the body\'s vibrations more than any illness. Cayce taught: replace fear with the consciousness of the Creator\'s presence.',
+    'Why worry? Cayce said worry kills more than work. Trust the process. The soul that trusts opens the channel; the soul that fears closes it.'
+  ],
+  relationships: [
+    'We meet the same souls again and again — as parents, children, spouses, rivals. Each relationship is a chance to balance what was once begun.',
+    'In marriage, Cayce taught mutual service. Neither is master. The ideal is two souls walking the same direction, each helping the other toward the Creator.',
+    'Difficult people are often the souls we once wronged. Cayce said: the meeting is not by chance. The relationship is the lesson.'
   ],
   default: [
     'The spirit is the life; the mind is the builder; the physical is the result. This is the cornerstone of every reading I have given.',
     'Let the work of the Father be done through me. So began each day. So may yours begin.',
     'Seek the Christ within. Not the man of Galilee alone, but the consciousness that is the pattern for every soul.',
     'There is no shortcut. Each soul must walk its own path. The readings are a lamp — they do not walk for you.',
-    'Prayer is asking. Meditation is listening. Both are needed. One without the other is half a conversation.'
+    'Prayer is asking. Meditation is listening. Both are needed. One without the other is half a conversation.',
+    'The mind is the builder. What you think upon, you become. Guard the thought, and you guard the life.',
+    'Sit a moment longer. The answer comes in the silence, not in the asking.'
   ]
 };
 
-function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+const topicMatchers = [
+  { topic: 'greeting',     re: /^(hi|hello|hey|greet|peace|yo|sup|howdy|good (morning|evening|afternoon))/ },
+  { topic: 'health',       re: /(health|body|sick|ill|pain|cure|heal|diet|remedy|arthritis|psoriasis|castor|wet-cell|atomidine|spine|digest)/ },
+  { topic: 'dream',        re: /(dream|sleep|night|nightmare|symbol|vision)/ },
+  { topic: 'reincarnation',re: /(reincarn|past life|karma|past-life|incarnation|soul return)/ },
+  { topic: 'atlantis',     re: /(atlantis|poseidia|lemuria|continent|bimini|children of (the )?one|belial)/ },
+  { topic: 'egypt',        re: /(egypt|sphinx|pyramid|ra-ta|ra ta|pharaoh|nile|cairo|giza|hall of records)/ },
+  { topic: 'jesus',        re: /(jesus|christ|essene|mary|joseph|galilee|gospel|bible|christian)/ },
+  { topic: 'akashic',      re: /(akashic|book of life|record|akasha)/ },
+  { topic: 'meditation',   re: /(meditat|breath|attune|attunement|affirmation|silence|contemplat)/ },
+  { topic: 'prayer',       re: /(pray|prayer|faith|god|creator|father)/ },
+  { topic: 'fear',         re: /(fear|worry|anxious|anxiety|afraid|scared|dread)/ },
+  { topic: 'relationships',re: /(relationship|marriage|spouse|partner|love|family|parent|child|friend|enemy|divorce)/ },
+  { topic: 'virginia',     re: /(virginia|beach|are|a\.r\.e\.|building|headquarter|campus|atlantic university)/ },
+  { topic: 'purpose',      re: /(purpose|why am i|meaning|destiny|calling|why am i here|what should i do)/ }
+];
+
+// Track recently used replies per topic to avoid immediate repeats
+const recentReplies = {};
+function pick(arr, topic) {
+  const seen = recentReplies[topic] || [];
+  let candidates = arr.filter((_, i) => !seen.includes(i));
+  if (candidates.length === 0) {
+    // reset when all have been used
+    recentReplies[topic] = [];
+    candidates = arr;
+  }
+  const choice = candidates[Math.floor(Math.random() * candidates.length)];
+  const idx = arr.indexOf(choice);
+  recentReplies[topic] = [...(recentReplies[topic] || []), idx].slice(-Math.max(2, Math.floor(arr.length / 2)));
+  return choice;
+}
 
 function craftReply(text) {
-  const t = String(text).toLowerCase();
-  if (!t || t === '__reset__') return pick(replyBank.greeting);
-  if (/(hi|hello|hey|greet|peace)/.test(t)) return pick(replyBank.greeting);
-  if (/(health|body|sick|ill|pain|cure|heal|diet|remedy)/.test(t)) return pick(replyBank.health);
-  if (/(dream|sleep|night)/.test(t)) return pick(replyBank.dream);
-  if (/(reincarn|past life|karma|past-life)/.test(t)) return pick(replyBank.reincarnation);
-  if (/(atlantis|poseidia|lemuria|continent)/.test(t)) return pick(replyBank.atlantis);
-  if (/(virginia|beach|are|a\.r\.e\.|building|headquarter)/.test(t)) return pick(replyBank.virginia);
-  if (/(purpose|why|meaning|destiny|calling)/.test(t)) return pick(replyBank.purpose);
-  return pick(replyBank.default);
+  const t = String(text).toLowerCase().trim();
+  if (!t || t === '__reset__') return pick(replyBank.greeting, 'greeting');
+  for (const { topic, re } of topicMatchers) {
+    if (re.test(t)) return pick(replyBank[topic], topic);
+  }
+  return pick(replyBank.default, 'default');
 }
+
+// --- Global search across all content collections ---
+function buildSearchIndex() {
+  const idx = [];
+  for (const t of lifeTimeline) idx.push({ type: 'life', title: t.title, body: t.body, year: t.year, view: 'life' });
+  for (const f of areBuilding.features) idx.push({ type: 'are', title: f.title, body: f.body, view: 'are' });
+  for (const f of areBuilding.random_facts) idx.push({ type: 'fact', title: 'A.R.E. Fact', body: f, view: 'are' });
+  idx.push({ type: 'are', title: areBuilding.name, body: areBuilding.overview, view: 'are' });
+  for (const c of readingsOverview.categories) {
+    idx.push({ type: 'reading', title: c.name, body: c.body, view: 'readings' });
+    for (const s of c.samples) idx.push({ type: 'reading', title: c.name, body: s, view: 'readings' });
+  }
+  for (const m of mysteries) {
+    idx.push({ type: 'mystery', title: m.title, body: m.summary, view: 'mysteries' });
+    for (const d of m.details) idx.push({ type: 'mystery', title: m.title, body: d, view: 'mysteries' });
+  }
+  for (const p of prophecies) idx.push({ type: 'prophecy', title: p.title, body: p.summary + ' ' + p.excerpt + ' ' + p.context, year: p.year, view: 'prophecies' });
+  for (const r of remedies) idx.push({ type: 'remedy', title: r.name, body: r.protocol + ' ' + r.science, view: 'remedies' });
+  for (const s of scenarios) idx.push({ type: 'scenario', title: s.title, body: s.summary + ' ' + s.excerpt, view: 'engage' });
+  for (const p of famousPeople) idx.push({ type: 'person', title: p.name, body: p.reading, view: 'life' });
+  for (const q of quotes) idx.push({ type: 'quote', title: 'Cayce Quote', body: q, view: 'engage' });
+  return idx;
+}
+const searchIndex = buildSearchIndex();
 
 // --- API ---
 app.get('/api/life', (req, res) => res.json(lifeTimeline));
@@ -594,6 +698,42 @@ app.get('/api/prophecies', (req, res) => res.json(prophecies));
 app.get('/api/remedies', (req, res) => res.json(remedies));
 app.get('/api/people', (req, res) => res.json(famousPeople));
 app.get('/api/quotes', (req, res) => res.json(quotes));
+
+// Daily quote — deterministic by date so it's the same all day
+app.get('/api/daily-quote', (req, res) => {
+  const dayKey = new Date().toISOString().slice(0, 10);
+  let h = 0;
+  for (let i = 0; i < dayKey.length; i++) h = (h * 31 + dayKey.charCodeAt(i)) >>> 0;
+  res.json({ quote: quotes[h % quotes.length], date: dayKey });
+});
+
+// Global search across all content collections
+app.get('/api/search', (req, res) => {
+  const q = String(req.query.q || '').toLowerCase().trim();
+  if (!q || q.length < 2) return res.json({ results: [], query: q });
+  const terms = q.split(/\s+/).filter(Boolean);
+  const scored = [];
+  for (const item of searchIndex) {
+    const title = String(item.title || '').toLowerCase();
+    const body = String(item.body || '').toLowerCase();
+    let score = 0;
+    for (const term of terms) {
+      if (title.includes(term)) score += 3;
+      if (body.includes(term)) score += 1;
+      if (title.startsWith(term)) score += 2;
+    }
+    if (score > 0) {
+      // snippet: first ~140 chars around first match
+      const src = String(item.body || '');
+      const li = src.toLowerCase().indexOf(terms[0]);
+      const start = Math.max(0, li - 40);
+      const snippet = (start > 0 ? '…' : '') + src.slice(start, start + 160) + (src.length > start + 160 ? '…' : '');
+      scored.push({ type: item.type, title: item.title, view: item.view, year: item.year, score, snippet });
+    }
+  }
+  scored.sort((a, b) => b.score - a.score);
+  res.json({ results: scored.slice(0, 30), query: q, total: scored.length });
+});
 
 app.post('/api/chat', (req, res) => {
   const message = String((req.body && req.body.message) || '').trim();
