@@ -162,6 +162,20 @@ input:focus,textarea:focus,button:focus{outline:none}
 .fab-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 .fab-top:active{transform:scale(.92)}
 
+/* === Home resource guide === */
+.resource-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:.65rem}
+.resource-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(26,34,48,.96),rgba(15,20,29,.9));border:1px solid rgba(230,193,120,.18);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.resource-card::after{content:'';position:absolute;width:74px;height:74px;border-radius:50%;right:-30px;bottom:-38px;background:rgba(230,193,120,.08);pointer-events:none}
+.resource-card:hover{transform:translateY(-2px);border-color:rgba(230,193,120,.42);background:linear-gradient(145deg,rgba(31,40,56,.98),rgba(15,20,29,.92))}
+.resource-card:first-child{grid-row:span 2}
+.resource-link{display:inline-flex;align-items:center;gap:.35rem;color:#e6c178;font-size:11px;font-weight:600;letter-spacing:.04em}
+.topic-form input,.topic-form select,.topic-form textarea{width:100%;background:rgba(7,10,15,.72);border:1px solid rgba(230,193,120,.2);border-radius:.75rem;color:#f5efe0;padding:.7rem .8rem;font-size:.82rem;outline:none;transition:border-color .18s,box-shadow .18s}
+.topic-form input:focus,.topic-form select:focus,.topic-form textarea:focus{border-color:rgba(230,193,120,.62);box-shadow:0 0 0 3px rgba(230,193,120,.08)}
+.topic-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#e6c178 50%),linear-gradient(135deg,#e6c178 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.topic-form textarea{resize:vertical;min-height:86px}
+.form-status{min-height:1.25rem;font-size:.75rem;color:#c8d0de}
+@media(max-width:560px){.resource-grid{grid-template-columns:1fr}.resource-card:first-child{grid-row:auto}}
+
 /* === Meditate breathing circle === */
 .breath-circle{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(230,193,120,0.18),rgba(168,212,162,0.08) 60%,transparent 80%);animation:breathCircle 8s ease-in-out infinite;pointer-events:none}
 @keyframes breathCircle{0%,100%{transform:scale(0.85);opacity:0.6}50%{transform:scale(1.08);opacity:0.9}}
@@ -249,9 +263,92 @@ input:focus,textarea:focus,button:focus{outline:none}
     </div>
   </div>
 
+  <section class="mb-6" aria-labelledby="startHereTitle">
+    <div class="flex items-end justify-between gap-3 mb-3">
+      <div>
+        <p class="h-eyebrow mb-1">A grounded way in</p>
+        <h2 id="startHereTitle" class="h-section">Start with context</h2>
+      </div>
+      <span class="text-[10px] txt-muted uppercase tracking-widest">3–10 min</span>
+    </div>
+    <div class="resource-grid">
+      <button type="button" class="resource-card rounded-2xl p-4 text-left" data-jump="life">
+        <span class="w-9 h-9 rounded-xl bg-accent10 txt-accent flex items-center justify-center mb-5"><i class="fa-solid fa-route"></i></span>
+        <p class="h-card mb-1">Follow the life first</p>
+        <p class="text-xs txt-soft leading-relaxed mb-4">Trace twelve turning points—from rural Kentucky to the Virginia Beach archive—before exploring individual claims.</p>
+        <span class="resource-link">Open the timeline <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+      </button>
+      <button type="button" class="resource-card rounded-2xl p-4 text-left" data-jump="readings">
+        <span class="h-eyebrow">Primary material</span>
+        <p class="h-card mt-2 mb-1">Browse by reading type</p>
+        <p class="text-xs txt-soft leading-relaxed mb-3">See how health, dreams, life purpose, and spiritual themes were organized.</p>
+        <span class="resource-link">Explore readings <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+      </button>
+      <a class="resource-card rounded-2xl p-4 block" href="https://edgarcayce.org/resources/" target="_blank" rel="noopener noreferrer">
+        <span class="h-eyebrow">Official resource</span>
+        <p class="h-card mt-2 mb-1">Continue at A.R.E.</p>
+        <p class="text-xs txt-soft leading-relaxed mb-3">Find the organization’s library, publications, and reading resources.</p>
+        <span class="resource-link">Visit the resource center <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+      </a>
+    </div>
+    <div class="glass-card rounded-2xl p-4 mt-3 border-l-2" style="border-left-color:#a8d4a2">
+      <div class="flex gap-3">
+        <i class="fa-solid fa-scale-balanced txt-accent2 mt-0.5"></i>
+        <div>
+          <p class="h-card mb-1">Read historically, not medically</p>
+          <p class="text-xs txt-soft leading-relaxed">The readings are historical and spiritual source material. Compare claims with current scholarship, and never replace qualified medical care with a remedy described here.</p>
+          <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3">
+            <a class="resource-link" href="https://edgarcayce.org/edgar-cayce/life/" target="_blank" rel="noopener noreferrer">Official biography <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></a>
+            <a class="resource-link" href="https://guides.loc.gov/religion-collections-libraries-archives/va-association-for-research-enlightenment-a-r-e-library" target="_blank" rel="noopener noreferrer">Library of Congress guide <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <h2 class="h-section mb-1">Living Readings</h2>
   <p class="text-sm txt-soft mb-4 leading-relaxed">Real historical recordings from Edgar Cayce's trance sessions, 1901–1941. Tap a card to read the excerpt.</p>
   <div id="scenariosList" class="space-y-3 mb-5"></div>
+
+  <section class="glass-card rounded-2xl p-4 mb-5" aria-labelledby="topicRequestTitle">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="w-10 h-10 rounded-xl bg-accent10 txt-accent flex items-center justify-center flex-none"><i class="fa-solid fa-bookmark"></i></span>
+      <div>
+        <p class="h-eyebrow mb-1">Powered by Netlify Forms</p>
+        <h2 id="topicRequestTitle" class="h-sub">Add to the reading trail</h2>
+        <p class="text-xs txt-soft leading-relaxed mt-1">Suggest a question or topic that would make this guide more useful.</p>
+      </div>
+    </div>
+    <form id="topicRequestForm" name="reading-topic-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="topic-form space-y-2.5">
+      <input type="hidden" name="form-name" value="reading-topic-request">
+      <p class="hidden"><label>Do not fill this out: <input name="bot-field"></label></p>
+      <label class="block">
+        <span class="text-[11px] txt-muted block mb-1">Area of interest</span>
+        <select name="area" required>
+          <option value="">Choose a topic</option>
+          <option>Life and history</option>
+          <option>Health readings</option>
+          <option>Dreams and meditation</option>
+          <option>Ancient mysteries</option>
+          <option>Research and sources</option>
+        </select>
+      </label>
+      <label class="block">
+        <span class="text-[11px] txt-muted block mb-1">What should be added?</span>
+        <textarea name="suggestion" maxlength="600" required placeholder="A reading number, question, source, or missing perspective…"></textarea>
+      </label>
+      <label class="block">
+        <span class="text-[11px] txt-muted block mb-1">Email <span class="opacity-60">(optional)</span></span>
+        <input type="email" name="email" autocomplete="email" placeholder="For a reply, if needed">
+      </label>
+      <div class="flex items-center gap-3 pt-1">
+        <button id="topicRequestSubmit" type="submit" class="px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-700 txt-bg font-semibold text-xs hover:brightness-110 transition flex items-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i> Send suggestion
+        </button>
+        <p id="topicRequestStatus" class="form-status flex-1" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
 
   <div class="divider-glow mb-4"></div>
 
@@ -544,6 +641,7 @@ function switchView(v){
   window.scrollTo(0,0);
 }
 navItems.forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+document.querySelectorAll('[data-jump]').forEach(el=>el.addEventListener('click',()=>switchView(el.dataset.jump)));
 
 // ---- Edgar SVG states ----
 const edgarState = {
@@ -994,6 +1092,34 @@ document.getElementById('nextQuote').addEventListener('click',()=>{
 document.getElementById('closeQuote').addEventListener('click',()=>quoteModal.classList.add('hidden'));
 // close modals on backdrop click
 [infoModal,quoteModal].forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.add('hidden');}));
+
+// ---- Netlify topic request form ----
+const topicRequestForm=document.getElementById('topicRequestForm');
+const topicRequestStatus=document.getElementById('topicRequestStatus');
+const topicRequestSubmit=document.getElementById('topicRequestSubmit');
+topicRequestForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  topicRequestSubmit.disabled=true;
+  topicRequestSubmit.classList.add('opacity-60');
+  topicRequestStatus.textContent='Sending…';
+  try{
+    const response=await fetch('/__forms.html',{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(new FormData(topicRequestForm)).toString()
+    });
+    if(!response.ok) throw new Error('Submission failed');
+    topicRequestForm.reset();
+    topicRequestStatus.textContent='Received. Thank you for helping shape the guide.';
+    topicRequestStatus.style.color='#a8d4a2';
+  }catch(error){
+    topicRequestStatus.textContent='Could not send right now. Please try again.';
+    topicRequestStatus.style.color='#e08a55';
+  }finally{
+    topicRequestSubmit.disabled=false;
+    topicRequestSubmit.classList.remove('opacity-60');
+  }
+});
 
 // ---- Search overlay ----
 const searchOverlay=document.getElementById('searchOverlay');
