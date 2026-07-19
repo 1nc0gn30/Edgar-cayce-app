@@ -7,21 +7,23 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
         cayce: {
-          bg: '#0a0e14',
-          panel: '#141a24',
-          card: '#1a212e',
+          bg: '#070a0f',
+          panel: '#0f141d',
+          card: '#141b27',
+          card2: '#1a2230',
           accent: '#d4af6a',
           accent2: '#8fb98f',
+          accent3: '#c97a4a',
           text: '#f0e8d8',
-          muted: '#8a93a3',
-          border: 'rgba(212,175,106,0.18)'
+          muted: '#7a8395',
+          border: 'rgba(212,175,106,0.15)'
         }
       },
       fontFamily: { serif: ['"Cormorant Garamond"','serif'], sans: ['Inter','sans-serif'] }
@@ -30,68 +32,118 @@ tailwind.config = {
 }
 </script>
 <style>
-body{background:#0a0e14;color:#f0e8d8;font-family:'Inter',sans-serif}
+:root{--accent:#d4af6a;--accent2:#8fb98f;--accent3:#c97a4a}
+body{background:#070a0f;color:#f0e8d8;font-family:'Inter',sans-serif}
 .scroll-hide::-webkit-scrollbar{display:none}
 .scroll-hide{-ms-overflow-style:none;scrollbar-width:none}
 .serif-title{font-family:'Cormorant Garamond',serif}
 .view.hidden-view{display:none !important}
-.view{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:80px}
+.view{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:90px;min-height:calc(100vh - 124px)}
 .fade-in{animation:fadeIn .4s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .nav-item.active{color:#d4af6a}
-.nav-item.active .nav-pill{background:rgba(212,175,106,0.14);box-shadow:0 0 14px rgba(212,175,106,0.2)}
-.aura-ring{position:absolute;inset:-32px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,rgba(212,175,106,0.3) 20%,transparent 40%,rgba(143,185,143,0.25) 65%,transparent 85%);animation:spin 9s linear infinite;filter:blur(3px);opacity:.55}
+.nav-item.active .nav-pill{background:rgba(212,175,106,0.16);box-shadow:0 0 16px rgba(212,175,106,0.25)}
+.nav-item.active .nav-pill::after{content:'';position:absolute;inset:-2px;border-radius:14px;border:1px solid rgba(212,175,106,0.3)}
+.nav-pill{position:relative}
+.aura-ring{position:absolute;inset:-32px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,rgba(212,175,106,0.35) 18%,transparent 38%,rgba(143,185,143,0.3) 62%,transparent 82%);animation:spin 9s linear infinite;filter:blur(4px);opacity:.6}
 @keyframes spin{100%{transform:rotate(360deg)}}
 .breath{animation:breath 5s ease-in-out infinite}
 @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 .msg-in{animation:msgIn .35s ease both}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.timeline-dot{width:10px;height:10px;border-radius:50%;background:#d4af6a;box-shadow:0 0 0 3px rgba(212,175,106,0.18)}
-.timeline-line{position:absolute;left:4px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,rgba(212,175,106,0.4),rgba(212,175,106,0.05))}
+.timeline-dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,#d4af6a,#8fb98f);box-shadow:0 0 0 4px rgba(212,175,106,0.12),0 0 12px rgba(212,175,106,0.3)}
+.timeline-line{position:absolute;left:5px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,rgba(212,175,106,0.5),rgba(212,175,106,0.08))}
 .shimmer-bar{height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,#d4af6a,#8fb98f,transparent);background-size:200% 100%;animation:shimmer 2.4s linear infinite}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .expandable{cursor:pointer;transition:all .25s}
-.expandable .expand-body{max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .25s ease;opacity:0}
-.expandable.open .expand-body{max-height:600px;opacity:1}
+.expandable .expand-body{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .25s ease;opacity:0}
+.expandable.open .expand-body{max-height:800px;opacity:1}
 .expandable .chevron{transition:transform .25s}
 .expandable.open .chevron{transform:rotate(180deg)}
-.bubble-cayce{position:relative;background:#1a212e;border:1px solid rgba(212,175,106,0.18);border-radius:16px;border-top-left-radius:4px}
-.bubble-cayce::before{content:'';position:absolute;left:-7px;top:14px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:7px solid #1a212e}
-.bubble-user{background:linear-gradient(135deg,#d4af6a,#b8923f);color:#0a0e14;border-radius:16px;border-top-right-radius:4px}
-.modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:60;display:flex;align-items:center;justify-content:center;padding:1rem}
+.bubble-cayce{position:relative;background:#141b27;border:1px solid rgba(212,175,106,0.18);border-radius:16px;border-top-left-radius:4px}
+.bubble-cayce::before{content:'';position:absolute;left:-7px;top:14px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:7px solid #141b27}
+.bubble-user{background:linear-gradient(135deg,#d4af6a,#b8923f);color:#070a0f;border-radius:16px;border-top-right-radius:4px}
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:60;display:flex;align-items:center;justify-content:center;padding:1rem}
 .meditate-progress{transition:stroke-dashoffset 1s linear}
 .pulse-dot{width:8px;height:8px;border-radius:50%;background:#8fb98f;animation:pulseDot 2s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 input:focus,textarea:focus,button:focus{outline:none}
-.kbd{font-size:10px;padding:1px 4px;border-radius:3px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1)}
+.glass-card{background:rgba(20,27,39,0.6);backdrop-filter:blur(12px);border:1px solid rgba(212,175,106,0.12);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.glow-text{text-shadow:0 0 20px rgba(212,175,106,0.4)}
+.hero-gradient{background:radial-gradient(ellipse at top,rgba(212,175,106,0.08) 0%,transparent 60%),radial-gradient(ellipse at bottom,rgba(143,185,143,0.05) 0%,transparent 50%)}
+.status-fulfilled{background:rgba(143,185,143,0.15);color:#8fb98f;border:1px solid rgba(143,185,143,0.3)}
+.status-unfulfilled{background:rgba(201,122,74,0.15);color:#c97a4a;border:1px solid rgba(201,122,74,0.3)}
+.status-pending{background:rgba(212,175,106,0.15);color:#d4af6a;border:1px solid rgba(212,175,106,0.3)}
+.quote-fade{transition:opacity .6s,transform .6s}
+.quote-fade.out{opacity:0;transform:translateY(8px)}
+.card-hover{transition:transform .2s,box-shadow .2s,border-color .2s}
+.card-hover:active{transform:scale(.98)}
+.cat-badge{font-size:9px;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;font-weight:600}
+.divider-glow{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,106,0.4),transparent)}
+.stat-pill{background:linear-gradient(135deg,rgba(212,175,106,0.08),rgba(143,185,143,0.06));border:1px solid rgba(212,175,106,0.15)}
+.nav-scroll{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.tab-btn{transition:all .2s}
+.tab-btn.active{background:rgba(212,175,106,0.15);color:#d4af6a;border-color:rgba(212,175,106,0.4)}
 </style>
 </head>
-<body class="min-h-screen w-full flex flex-col">
+<body class="min-h-screen w-full flex flex-col hero-gradient">
 
 <!-- HEADER -->
-<header class="flex-none h-14 px-4 flex items-center justify-between border-b border-cayce-border bg-cayce-bg z-30">
+<header class="flex-none h-14 px-4 flex items-center justify-between border-b border-cayce-border bg-cayce-bg/80 backdrop-blur z-30 sticky top-0">
   <div class="flex items-center gap-2.5">
-    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent2 flex items-center justify-center">
-      <i class="fa-solid fa-eye text-cayce-bg text-xs"></i>
+    <div class="relative w-9 h-9 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent3 flex items-center justify-center shadow-lg">
+      <div class="absolute inset-0 rounded-full" style="box-shadow:0 0 16px rgba(212,175,106,0.4)"></div>
+      <i class="fa-solid fa-eye text-cayce-bg text-xs relative z-10"></i>
     </div>
     <div>
-      <h1 class="serif-title text-lg leading-none font-semibold text-cayce-accent">Edgar Cayce</h1>
+      <h1 class="serif-title text-lg leading-none font-semibold text-cayce-accent glow-text">Edgar Cayce</h1>
       <p class="text-[9px] text-cayce-muted tracking-[0.2em] uppercase">The Sleeping Prophet</p>
     </div>
   </div>
-  <button id="infoBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center text-cayce-muted">
-    <i class="fa-regular fa-circle-question"></i>
-  </button>
+  <div class="flex items-center gap-1">
+    <button id="quoteBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center text-cayce-muted transition" title="Daily Quote">
+      <i class="fa-solid fa-quote-left text-xs"></i>
+    </button>
+    <button id="infoBtn" class="w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center text-cayce-muted transition">
+      <i class="fa-regular fa-circle-question"></i>
+    </button>
+  </div>
 </header>
 
 <!-- VIEWS -->
-<main class="flex-1 relative overflow-hidden">
+<main class="flex-1 relative">
 
 <!-- ENGAGE VIEW -->
-<section id="view-engage" class="view fade-in px-4 pt-3 pb-2">
+<section id="view-engage" class="view fade-in px-4 pt-4 pb-2">
+  <!-- Quote carousel -->
+  <div id="quoteCarousel" class="glass-card rounded-2xl p-4 mb-5 text-center">
+    <i class="fa-solid fa-quote-left text-cayce-accent/40 text-sm mb-2"></i>
+    <p id="quoteText" class="serif-title text-lg italic text-cayce-text leading-relaxed quote-fade">"The spirit is the life, the mind is the builder, the physical is the result."</p>
+    <p class="text-[10px] text-cayce-muted mt-2 uppercase tracking-widest">— Edgar Cayce</p>
+  </div>
+
+  <!-- Stats row -->
+  <div class="grid grid-cols-3 gap-2 mb-5">
+    <div class="stat-pill rounded-xl p-2.5 text-center">
+      <p class="serif-title text-2xl text-cayce-accent font-bold">14,306</p>
+      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Readings</p>
+    </div>
+    <div class="stat-pill rounded-xl p-2.5 text-center">
+      <p class="serif-title text-2xl text-cayce-accent2 font-bold">44</p>
+      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Years</p>
+    </div>
+    <div class="stat-pill rounded-xl p-2.5 text-center">
+      <p class="serif-title text-2xl text-cayce-accent3 font-bold">9</p>
+      <p class="text-[9px] text-cayce-muted uppercase tracking-wider">Prophecies</p>
+    </div>
+  </div>
+
   <h2 class="serif-title text-2xl text-cayce-text mb-1">Living Readings</h2>
   <p class="text-xs text-cayce-muted mb-4">Real historical recordings from Edgar Cayce's trance sessions, 1901–1941. Tap a card to read the excerpt.</p>
   <div id="scenariosList" class="space-y-3 mb-5"></div>
+
+  <div class="divider-glow mb-4"></div>
 
   <div class="flex flex-col items-center text-center mb-3">
     <div class="relative w-28 h-28 mb-1">
@@ -99,16 +151,13 @@ input:focus,textarea:focus,button:focus{outline:none}
       <svg id="edgarSvg" viewBox="0 0 100 100" class="w-full h-full relative z-10" style="filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5))">
         <defs>
           <radialGradient id="headGrad" cx="50%" cy="40%" r="55%">
-            <stop offset="0%" stop-color="#f0e0c0"/>
-            <stop offset="100%" stop-color="#d4af6a"/>
+            <stop offset="0%" stop-color="#f0e0c0"/><stop offset="100%" stop-color="#d4af6a"/>
           </radialGradient>
           <radialGradient id="bodyGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#3a2e1c"/>
-            <stop offset="100%" stop-color="#1a1410"/>
+            <stop offset="0%" stop-color="#3a2e1c"/><stop offset="100%" stop-color="#1a1410"/>
           </radialGradient>
           <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stop-color="rgba(212,175,106,0)"/>
-            <stop offset="100%" stop-color="rgba(212,175,106,0.4)"/>
+            <stop offset="60%" stop-color="rgba(212,175,106,0)"/><stop offset="100%" stop-color="rgba(212,175,106,0.4)"/>
           </radialGradient>
         </defs>
         <circle cx="50" cy="48" r="44" fill="url(#haloGrad)" opacity="0.6"/>
@@ -145,7 +194,7 @@ input:focus,textarea:focus,button:focus{outline:none}
     <div class="flex-none p-2.5 border-t border-cayce-border">
       <form id="chatForm" class="flex gap-2">
         <input id="chatInput" type="text" autocomplete="off" placeholder="Ask Edgar..." class="flex-1 bg-cayce-bg border border-cayce-border rounded-full px-4 py-2.5 text-sm placeholder:text-cayce-muted focus:border-cayce-accent/60 focus:ring-1 focus:ring-cayce-accent/30">
-        <button type="submit" class="w-10 h-10 rounded-full bg-cayce-accent text-cayce-bg flex items-center justify-center hover:brightness-110 transition shrink-0">
+        <button type="submit" class="w-10 h-10 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent3 text-cayce-bg flex items-center justify-center hover:brightness-110 transition shrink-0">
           <i class="fa-solid fa-paper-plane text-sm"></i>
         </button>
       </form>
@@ -154,33 +203,40 @@ input:focus,textarea:focus,button:focus{outline:none}
 </section>
 
 <!-- LIFE VIEW -->
-<section id="view-life" class="view fade-in px-4 pt-3 pb-24 hidden-view">
+<section id="view-life" class="view fade-in px-4 pt-4 pb-2 hidden-view">
   <h2 class="serif-title text-2xl text-cayce-text mb-1">The Life of Edgar Cayce</h2>
-  <p class="text-xs text-cayce-muted mb-4">From Kentucky farm boy to "The Sleeping Prophet."</p>
-  <div class="relative pl-6 pb-8">
+  <p class="text-xs text-cayce-muted mb-5">From Kentucky farm boy to "The Sleeping Prophet" — 1877 to 1945.</p>
+  <div class="relative pl-7 pb-8">
     <div class="timeline-line"></div>
     <div id="lifeTimeline" class="space-y-5"></div>
   </div>
+  <div class="divider-glow mb-4"></div>
+  <h3 class="serif-title text-lg text-cayce-accent mb-3">People in Edgar's Orbit</h3>
+  <p class="text-xs text-cayce-muted mb-3">Famous figures connected to the Cayce readings.</p>
+  <div id="peopleList" class="space-y-3"></div>
 </section>
 
 <!-- A.R.E. VIEW -->
-<section id="view-are" class="view fade-in px-4 pt-3 pb-24 hidden-view">
-  <h2 class="serif-title text-2xl text-cayce-text mb-1" id="areName"></h2>
-  <p class="text-xs text-cayce-accent2 mb-1" id="areFounded"></p>
-  <p class="text-xs text-cayce-muted mb-1" id="areAddress"></p>
-  <p class="text-xs text-cayce-muted mb-4" id="areFounder"></p>
-  <div class="bg-cayce-card rounded-xl border border-cayce-border p-4 mb-5">
+<section id="view-are" class="view fade-in px-4 pt-4 pb-2 hidden-view">
+  <div class="glass-card rounded-2xl p-5 mb-5">
+    <h2 class="serif-title text-2xl text-cayce-text mb-1" id="areName"></h2>
+    <div class="flex flex-wrap gap-2 mt-2 mb-3">
+      <span class="cat-badge status-pending" id="areFounded"></span>
+      <span class="cat-badge stat-pill text-cayce-text" id="areAddress"></span>
+    </div>
+    <p class="text-xs text-cayce-muted mb-2" id="areFounder"></p>
     <div class="shimmer-bar mb-3"></div>
     <p class="text-sm text-cayce-text leading-relaxed" id="areOverview"></p>
   </div>
   <h3 class="serif-title text-lg text-cayce-accent mb-3">Campus Features</h3>
   <div id="areFeatures" class="space-y-3 mb-6"></div>
-  <h3 class="serif-title text-lg text-cayce-accent mb-3">Random &amp; Must-Know Facts</h3>
+  <div class="divider-glow mb-4"></div>
+  <h3 class="serif-title text-lg text-cayce-accent mb-3">Random & Must-Know Facts</h3>
   <div id="areFacts" class="space-y-2.5"></div>
 </section>
 
 <!-- READINGS VIEW -->
-<section id="view-readings" class="view fade-in px-4 pt-3 pb-24 hidden-view">
+<section id="view-readings" class="view fade-in px-4 pt-4 pb-2 hidden-view">
   <h2 class="serif-title text-2xl text-cayce-text mb-1">The Readings</h2>
   <p class="text-xs text-cayce-muted mb-1" id="readingsTotal"></p>
   <p class="text-xs text-cayce-muted mb-4">Tap a category to expand and read sample excerpts.</p>
@@ -188,101 +244,144 @@ input:focus,textarea:focus,button:focus{outline:none}
 </section>
 
 <!-- MYSTERIES VIEW -->
-<section id="view-mysteries" class="view fade-in px-4 pt-3 pb-24 hidden-view">
+<section id="view-mysteries" class="view fade-in px-4 pt-4 pb-2 hidden-view">
   <h2 class="serif-title text-2xl text-cayce-text mb-1">Ancient Mysteries</h2>
-  <p class="text-xs text-cayce-muted mb-4">The prophesies and lost civilizations described in trance.</p>
+  <p class="text-xs text-cayce-muted mb-5">The prophesies and lost civilizations described in trance.</p>
   <div id="mysteriesList" class="space-y-3"></div>
 </section>
 
+<!-- PROPHECIES VIEW -->
+<section id="view-prophecies" class="view fade-in px-4 pt-4 pb-2 hidden-view">
+  <h2 class="serif-title text-2xl text-cayce-text mb-1">Prophecies</h2>
+  <p class="text-xs text-cayce-muted mb-1">Cayce's predictions — fulfilled, unfulfilled, and pending.</p>
+  <div class="flex gap-2 mb-4 text-[10px]">
+    <span class="cat-badge status-fulfilled">Fulfilled</span>
+    <span class="cat-badge status-unfulfilled">Unfulfilled</span>
+    <span class="cat-badge status-pending">Pending</span>
+  </div>
+  <div id="propheciesList" class="space-y-3"></div>
+</section>
+
+<!-- REMEDIES VIEW -->
+<section id="view-remedies" class="view fade-in px-4 pt-4 pb-2 hidden-view">
+  <h2 class="serif-title text-2xl text-cayce-text mb-1">Cayce Remedies</h2>
+  <p class="text-xs text-cayce-muted mb-1">The actual health protocols prescribed in over 14,000 readings.</p>
+  <p class="text-[10px] text-cayce-accent3 mb-4 italic">For historical study. Not medical advice.</p>
+  <div id="remediesList" class="space-y-3"></div>
+</section>
+
 <!-- MEDITATE VIEW -->
-<section id="view-meditate" class="view fade-in px-4 pt-3 pb-24 hidden-view flex flex-col">
+<section id="view-meditate" class="view fade-in px-4 pt-4 pb-2 hidden-view flex flex-col">
   <h2 class="serif-title text-2xl text-cayce-text mb-1">Meditate with Edgar</h2>
   <p class="text-xs text-cayce-muted mb-4">Cayce-recommended meditation with affirmations.</p>
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="relative w-44 h-44 mb-5">
       <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
         <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(212,175,106,0.12)" stroke-width="3"/>
-        <circle id="meditateProgress" cx="50" cy="50" r="46" fill="none" stroke="#d4af6a" stroke-width="3" stroke-dasharray="289.03" stroke-dashoffset="289.03" stroke-linecap="round" class="meditate-progress"/>
+        <circle id="meditateProgress" cx="50" cy="50" r="46" fill="none" stroke="url(#medGrad)" stroke-width="3" stroke-dasharray="289.03" stroke-dashoffset="289.03" stroke-linecap="round" class="meditate-progress"/>
+        <defs><linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#d4af6a"/><stop offset="100%" stop-color="#8fb98f"/></linearGradient></defs>
       </svg>
       <div class="absolute inset-0 flex flex-col items-center justify-center">
-        <span id="meditateTimer" class="serif-title text-4xl text-cayce-accent">10:00</span>
+        <span id="meditateTimer" class="serif-title text-4xl text-cayce-accent glow-text">10:00</span>
         <span id="meditateState" class="text-[10px] uppercase tracking-widest text-cayce-muted mt-1">Ready</span>
       </div>
     </div>
     <div class="flex gap-2 mb-5">
-      <button class="med-preset px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted hover:bg-cayce-accent/10" data-min="5">5 min</button>
-      <button class="med-preset px-3 py-1.5 rounded-full border border-cayce-accent text-xs text-cayce-accent bg-cayce-accent/10" data-min="10">10 min</button>
-      <button class="med-preset px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted hover:bg-cayce-accent/10" data-min="20">20 min</button>
+      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted" data-min="5">5 min</button>
+      <button class="med-preset tab-btn active px-3 py-1.5 rounded-full border border-cayce-accent text-xs text-cayce-accent bg-cayce-accent/10" data-min="10">10 min</button>
+      <button class="med-preset tab-btn px-3 py-1.5 rounded-full border border-cayce-border text-xs text-cayce-muted" data-min="20">20 min</button>
     </div>
-    <button id="meditateToggle" class="px-6 py-3 rounded-full bg-cayce-accent text-cayce-bg font-medium text-sm hover:brightness-110 transition flex items-center gap-2 mb-4">
+    <button id="meditateToggle" class="px-6 py-3 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110 transition flex items-center gap-2 mb-4 shadow-lg">
       <i class="fa-solid fa-play"></i> Begin
     </button>
-    <div id="affirmationBox" class="bg-cayce-card border border-cayce-border rounded-2xl p-4 max-w-sm text-center min-h-[80px] flex items-center justify-center">
-      <p id="affirmationText" class="serif-title text-lg italic text-cayce-accent2 leading-relaxed">"Tap Begin to receive your affirmation."</p>
+    <div id="affirmationBox" class="glass-card rounded-2xl p-4 max-w-sm text-center min-h-[80px] flex items-center justify-center">
+      <p id="affirmationText" class="serif-title text-lg italic text-cayce-accent2 leading-relaxed quote-fade">"Tap Begin to receive your affirmation."</p>
     </div>
     <h3 class="serif-title text-lg text-cayce-accent mt-6 mb-2">The Six Steps</h3>
-    <div id="meditateSteps" class="w-full max-w-sm space-y-2"></div>
+    <div id="meditateSteps" class="w-full max-w-sm space-y-2 mb-6"></div>
   </div>
 </section>
 
 </main>
 
-<!-- BOTTOM NAV -->
-<nav class="flex-none h-[68px] bg-cayce-panel/95 backdrop-blur border-t border-cayce-border grid grid-cols-6 items-center px-0.5 z-40">
-  <button class="nav-item active flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="engage">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-comments text-base"></i></span>
-    <span class="text-[9px]">Engage</span>
-  </button>
-  <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="life">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-user-pen text-base"></i></span>
-    <span class="text-[9px]">Life</span>
-  </button>
-  <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="are">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-building text-base"></i></span>
-    <span class="text-[9px]">A.R.E.</span>
-  </button>
-  <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="readings">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-book text-base"></i></span>
-    <span class="text-[9px]">Readings</span>
-  </button>
-  <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="mysteries">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-landmark text-base"></i></span>
-    <span class="text-[9px]">Mysteries</span>
-  </button>
-  <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1.5 text-cayce-muted transition" data-view="meditate">
-    <span class="nav-pill w-11 h-9 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-om text-base"></i></span>
-    <span class="text-[9px]">Meditate</span>
-  </button>
+<!-- BOTTOM NAV (scrollable on small screens) -->
+<nav class="flex-none bg-cayce-panel/95 backdrop-blur border-t border-cayce-border z-40 sticky bottom-0">
+  <div class="nav-scroll flex items-center px-1 py-1.5 gap-0.5 justify-start sm:justify-center">
+    <button class="nav-item active flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="engage">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-comments text-base"></i></span>
+      <span class="text-[9px]">Engage</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="life">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-user-pen text-base"></i></span>
+      <span class="text-[9px]">Life</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="are">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-building text-base"></i></span>
+      <span class="text-[9px]">A.R.E.</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="readings">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-book text-base"></i></span>
+      <span class="text-[9px]">Readings</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="mysteries">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-landmark text-base"></i></span>
+      <span class="text-[9px]">Mysteries</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="prophecies">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-crystal-ball text-base"></i></span>
+      <span class="text-[9px]">Prophecies</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="remedies">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-mortar-pestle text-base"></i></span>
+      <span class="text-[9px]">Remedies</span>
+    </button>
+    <button class="nav-item flex flex-col items-center justify-center gap-0.5 py-1 px-2 text-cayce-muted transition min-w-[58px]" data-view="meditate">
+      <span class="nav-pill w-10 h-8 rounded-xl flex items-center justify-center"><i class="fa-solid fa-om text-base"></i></span>
+      <span class="text-[9px]">Meditate</span>
+    </button>
+  </div>
 </nav>
 
 <!-- INFO MODAL -->
 <div id="infoModal" class="modal-back hidden">
-  <div class="bg-cayce-card border border-cayce-border rounded-2xl max-w-sm w-full p-5">
-    <h3 class="serif-title text-2xl text-cayce-accent mb-2">A quiet companion</h3>
+  <div class="glass-card rounded-2xl max-w-sm w-full p-5">
+    <h3 class="serif-title text-2xl text-cayce-accent mb-2 glow-text">A quiet companion</h3>
     <p class="text-sm text-cayce-text leading-relaxed mb-4">Edgar Cayce (1877–1945) was an American psychic who gave over 14,000 readings in trance. This app is a contemplative tribute — for learning and reflection. It is not medical or spiritual advice.</p>
-    <button id="closeInfo" class="w-full py-2.5 rounded-full bg-cayce-accent text-cayce-bg font-medium text-sm hover:brightness-110">Enter</button>
+    <button id="closeInfo" class="w-full py-2.5 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110">Enter</button>
+  </div>
+</div>
+
+<!-- QUOTE MODAL -->
+<div id="quoteModal" class="modal-back hidden">
+  <div class="glass-card rounded-2xl max-w-sm w-full p-6 text-center">
+    <i class="fa-solid fa-quote-left text-cayce-accent/50 text-2xl mb-3"></i>
+    <p id="modalQuoteText" class="serif-title text-xl italic text-cayce-text leading-relaxed mb-3">"The spirit is the life..."</p>
+    <p class="text-[10px] text-cayce-muted uppercase tracking-widest mb-4">— Edgar Cayce</p>
+    <button id="nextQuote" class="text-xs text-cayce-accent border border-cayce-accent/40 rounded-full px-4 py-1.5 hover:bg-cayce-accent/10 transition mb-2">New quote <i class="fa-solid fa-shuffle ml-1"></i></button>
+    <button id="closeQuote" class="block w-full py-2 rounded-full bg-gradient-to-r from-cayce-accent to-cayce-accent3 text-cayce-bg font-medium text-sm hover:brightness-110">Close</button>
   </div>
 </div>
 
 <script>
-const views = ['engage','life','are','readings','mysteries','meditate'];
+const views = ['engage','life','are','readings','mysteries','prophecies','remedies','meditate'];
 const navItems = document.querySelectorAll('.nav-item');
 
 function switchView(v){
   views.forEach(x=>document.getElementById('view-'+x).classList.toggle('hidden-view', x!==v));
   navItems.forEach(b=>b.classList.toggle('active', b.dataset.view===v));
-  document.getElementById('view-'+v).classList.remove('fade-in');
-  void document.getElementById('view-'+v).offsetWidth;
-  document.getElementById('view-'+v).classList.add('fade-in');
+  const el=document.getElementById('view-'+v);
+  el.classList.remove('fade-in'); void el.offsetWidth; el.classList.add('fade-in');
   if(v==='engage') setTimeout(()=>document.getElementById('chatInput').focus(),50);
+  // scroll nav to active item
+  const active=document.querySelector('.nav-item.active');
+  if(active) active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  window.scrollTo(0,0);
 }
 navItems.forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
 
 // ---- Edgar SVG states ----
 const edgarState = {
-  el: document.getElementById('edgarSvg'),
   stateLabel: document.getElementById('edgarState'),
-  resting: true,
   setState(name){
     const label = {resting:'Edgar is resting.', trance:'Edgar enters the trance...', speaking:'Edgar is speaking...', thinking:'Edgar is receiving...'}[name] || 'Edgar is resting.';
     this.stateLabel.textContent = label;
@@ -290,18 +389,15 @@ const edgarState = {
     const mouth=document.getElementById('mouth');
     const browL=document.getElementById('browL'), browR=document.getElementById('browR');
     if(name==='trance'||name==='thinking'){
-      eyeOL.style.display='none'; eyeOR.style.display='none';
-      eyeCL.style.display=''; eyeCR.style.display='';
+      eyeOL.style.display='none'; eyeOR.style.display='none'; eyeCL.style.display=''; eyeCR.style.display='';
       mouth.setAttribute('d','M 45 64 Q 50 65 55 64');
       browL.setAttribute('d','M 36 41 Q 42 38 47 41'); browR.setAttribute('d','M 53 41 Q 58 38 64 41');
     } else if(name==='speaking'){
-      eyeOL.style.display='none'; eyeOR.style.display='none';
-      eyeCL.style.display=''; eyeCR.style.display='';
+      eyeOL.style.display='none'; eyeOR.style.display='none'; eyeCL.style.display=''; eyeCR.style.display='';
       mouth.setAttribute('d','M 44 63 Q 50 68 56 63');
       browL.setAttribute('d','M 36 42 Q 42 39 47 42'); browR.setAttribute('d','M 53 42 Q 58 39 64 42');
-    } else { // resting
-      eyeOL.style.display=''; eyeOR.style.display='';
-      eyeCL.style.display='none'; eyeCR.style.display='none';
+    } else {
+      eyeOL.style.display=''; eyeOR.style.display=''; eyeCL.style.display='none'; eyeCR.style.display='none';
       mouth.setAttribute('d','M 44 65 Q 50 66 56 65');
       browL.setAttribute('d','M 36 42 Q 42 39 47 42'); browR.setAttribute('d','M 53 42 Q 58 39 64 42');
     }
@@ -323,45 +419,28 @@ function addMsg(role,text){
   } else {
     w.innerHTML=`<div class="bubble-user p-2.5 max-w-[82%]"><p class="text-[13px] leading-relaxed">${esc(text)}</p></div>`;
   }
-  messagesEl.appendChild(w);
-  messagesEl.scrollTop=messagesEl.scrollHeight;
+  messagesEl.appendChild(w); messagesEl.scrollTop=messagesEl.scrollHeight;
 }
 function addLoading(){
-  const w=document.createElement('div');
-  w.id='loadingMsg';
-  w.className='flex gap-2 msg-in';
+  const w=document.createElement('div'); w.id='loadingMsg'; w.className='flex gap-2 msg-in';
   w.innerHTML=`<div class="w-7 h-7 rounded-full bg-gradient-to-br from-cayce-accent to-cayce-accent2 flex items-center justify-center flex-none text-cayce-bg text-[10px]"><i class="fa-solid fa-eye"></i></div>
     <div class="bubble-cayce p-2.5"><span class="inline-flex gap-1"><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce"></span><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce" style="animation-delay:.12s"></span><span class="w-1.5 h-1.5 rounded-full bg-cayce-accent animate-bounce" style="animation-delay:.24s"></span></span></div>`;
-  messagesEl.appendChild(w);
-  messagesEl.scrollTop=messagesEl.scrollHeight;
+  messagesEl.appendChild(w); messagesEl.scrollTop=messagesEl.scrollHeight;
 }
 function rmLoading(){const el=document.getElementById('loadingMsg'); if(el) el.remove();}
 
 chatForm.addEventListener('submit', async e=>{
-  e.preventDefault();
-  const text=chatInput.value.trim();
-  if(!text) return;
-  addMsg('user',text);
-  chatInput.value='';
-  edgarState.setState('trance');
-  addLoading();
-  setTimeout(()=>edgarState.setState('thinking'), 600);
+  e.preventDefault(); const text=chatInput.value.trim(); if(!text) return;
+  addMsg('user',text); chatInput.value=''; edgarState.setState('trance'); addLoading();
+  setTimeout(()=>edgarState.setState('thinking'),600);
   try{
     const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})});
-    const data=await res.json();
-    rmLoading();
-    edgarState.setState('speaking');
-    addMsg('cayce',data.reply);
+    const data=await res.json(); rmLoading(); edgarState.setState('speaking'); addMsg('cayce',data.reply);
     setTimeout(()=>edgarState.setState('resting'),2200);
-  }catch(err){
-    rmLoading();
-    edgarState.setState('resting');
-    addMsg('cayce','The reading is unclear at this moment. Rest, and ask again.');
-  }
+  }catch(err){ rmLoading(); edgarState.setState('resting'); addMsg('cayce','The reading is unclear at this moment. Rest, and ask again.'); }
 });
 document.getElementById('clearChat').addEventListener('click',async()=>{
-  messagesEl.innerHTML='';
-  addMsg('cayce','The slate is quiet. Ask what you seek.');
+  messagesEl.innerHTML=''; addMsg('cayce','The slate is quiet. Ask what you seek.');
   await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'__reset__'})}).catch(()=>{});
 });
 async function loadChat(){
@@ -376,13 +455,27 @@ async function loadLife(){
   const r=await fetch('/api/life'); const d=await r.json();
   document.getElementById('lifeTimeline').innerHTML=d.map(t=>`
     <div class="relative">
-      <div class="absolute -left-6 top-1 timeline-dot"></div>
-      <div class="bg-cayce-card border border-cayce-border rounded-xl p-3">
+      <div class="absolute -left-7 top-1.5 timeline-dot"></div>
+      <div class="glass-card rounded-xl p-3.5 card-hover">
         <div class="flex items-baseline gap-2 mb-1">
-          <span class="serif-title text-xl text-cayce-accent font-semibold">${t.year}</span>
+          <span class="serif-title text-xl text-cayce-accent font-bold">${t.year}</span>
           <span class="serif-title text-base text-cayce-text">${esc(t.title)}</span>
         </div>
         <p class="text-xs text-cayce-muted leading-relaxed">${esc(t.body)}</p>
+      </div>
+    </div>`).join('');
+}
+
+// ---- Famous people ----
+async function loadPeople(){
+  const r=await fetch('/api/people'); const d=await r.json();
+  document.getElementById('peopleList').innerHTML=d.map(p=>`
+    <div class="glass-card rounded-xl p-3.5 card-hover flex gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/20 to-cayce-accent2/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
+      <div class="flex-1 min-w-0">
+        <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(p.name)}</h4>
+        <p class="text-[10px] text-cayce-accent2 uppercase tracking-wider mb-1.5">${esc(p.role)}</p>
+        <p class="text-xs text-cayce-muted leading-relaxed">${esc(p.reading)}</p>
       </div>
     </div>`).join('');
 }
@@ -396,13 +489,13 @@ async function loadAre(){
   document.getElementById('areFounder').textContent='Founded by '+d.founded_by;
   document.getElementById('areOverview').textContent=d.overview;
   document.getElementById('areFeatures').innerHTML=d.features.map(f=>`
-    <div class="bg-cayce-card border border-cayce-border rounded-xl p-3.5">
+    <div class="glass-card rounded-xl p-3.5 card-hover">
       <div class="shimmer-bar mb-2.5"></div>
       <h4 class="serif-title text-base text-cayce-accent mb-1">${esc(f.title)}</h4>
       <p class="text-xs text-cayce-muted leading-relaxed">${esc(f.body)}</p>
     </div>`).join('');
   document.getElementById('areFacts').innerHTML=d.random_facts.map(f=>`
-    <div class="bg-cayce-card border border-cayce-border rounded-xl p-3 flex gap-2.5">
+    <div class="glass-card rounded-xl p-3 flex gap-2.5 card-hover">
       <i class="fa-solid fa-star text-cayce-accent text-xs mt-1"></i>
       <p class="text-xs text-cayce-text leading-relaxed">${esc(f)}</p>
     </div>`).join('');
@@ -413,9 +506,9 @@ async function loadReadings(){
   const r=await fetch('/api/readings'); const d=await r.json();
   document.getElementById('readingsTotal').textContent=`${d.total.toLocaleString()} documented readings given between 1901 and 1944.`;
   document.getElementById('readingsCats').innerHTML=d.categories.map((c,i)=>`
-    <div class="expandable bg-cayce-card border border-cayce-border rounded-xl p-3.5" data-idx="${i}">
+    <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-idx="${i}">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-cayce-accent/10 flex items-center justify-center text-cayce-accent"><i class="fa-solid ${c.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent2/10 flex items-center justify-center text-cayce-accent"><i class="fa-solid ${c.icon}"></i></div>
         <div class="flex-1 min-w-0">
           <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(c.name)}</h4>
           <p class="text-[10px] text-cayce-accent2">${esc(c.count)}</p>
@@ -427,18 +520,16 @@ async function loadReadings(){
         ${c.samples.map(s=>`<div class="bg-cayce-bg/60 border border-cayce-border rounded-lg p-2.5 mb-2"><p class="serif-title text-sm italic text-cayce-accent2 leading-relaxed">${esc(s)}</p></div>`).join('')}
       </div>
     </div>`).join('');
-  document.querySelectorAll('#readingsCats .expandable').forEach(el=>{
-    el.addEventListener('click',()=>el.classList.toggle('open'));
-  });
+  document.querySelectorAll('#readingsCats .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
 }
 
 // ---- Mysteries ----
 async function loadMysteries(){
   const r=await fetch('/api/mysteries'); const d=await r.json();
   document.getElementById('mysteriesList').innerHTML=d.map((m,i)=>`
-    <div class="expandable bg-cayce-card border border-cayce-border rounded-xl p-3.5" data-idx="${i}">
+    <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-idx="${i}">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-cayce-accent/10 flex items-center justify-center text-cayce-accent text-lg"><i class="fa-solid ${m.icon}"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg"><i class="fa-solid ${m.icon}"></i></div>
         <div class="flex-1 min-w-0">
           <h4 class="serif-title text-lg text-cayce-text leading-tight">${esc(m.title)}</h4>
           <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(m.summary)}</p>
@@ -449,86 +540,78 @@ async function loadMysteries(){
         ${m.details.map(det=>`<div class="flex gap-2 mb-2"><i class="fa-solid fa-circle text-cayce-accent text-[5px] mt-1.5"></i><p class="text-xs text-cayce-text leading-relaxed flex-1">${esc(det)}</p></div>`).join('')}
       </div>
     </div>`).join('');
-  document.querySelectorAll('#mysteriesList .expandable').forEach(el=>{
-    el.addEventListener('click',()=>el.classList.toggle('open'));
-  });
+  document.querySelectorAll('#mysteriesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
 }
 
-// ---- Meditate ----
-let medMin=10, medSec=0, medTimer=null, medRunning=false, medAffirmInt=null;
-const medProgress=document.getElementById('meditateProgress');
-const medTimerEl=document.getElementById('meditateTimer');
-const medStateEl=document.getElementById('meditateState');
-const medToggle=document.getElementById('meditateToggle');
-const affirmationEl=document.getElementById('affirmationText');
-const CIRC=2*Math.PI*46;
-
-function renderTimer(){const m=Math.floor(medSec/60), s=medSec%60; medTimerEl.textContent=`${m}:${String(s).padStart(2,'0')}`;}
-function renderProgress(total){const off = total>0 ? CIRC*(1 - medSec/total) : CIRC; medProgress.style.strokeDashoffset=off;}
-
-document.querySelectorAll('.med-preset').forEach(b=>b.addEventListener('click',()=>{
-  if(medRunning) return;
-  document.querySelectorAll('.med-preset').forEach(x=>{x.classList.remove('text-cayce-accent','bg-cayce-accent/10','border-cayce-accent');x.classList.add('text-cayce-muted','border-cayce-border');});
-  b.classList.add('text-cayce-accent','bg-cayce-accent/10','border-cayce-accent');
-  b.classList.remove('text-cayce-muted','border-cayce-border');
-  medMin=parseInt(b.dataset.min); medSec=medMin*60; renderTimer(); renderProgress(medSec*1);
-}));
-
-async function loadMeditations(){
-  const r=await fetch('/api/meditations'); const d=await r.json();
-  window._affirmations=d.affirmations;
-  window._steps=d.steps;
-  document.getElementById('meditateSteps').innerHTML=d.steps.map(s=>`
-    <div class="bg-cayce-card border border-cayce-border rounded-xl p-3 flex gap-3">
-      <div class="w-6 h-6 rounded-full bg-cayce-accent/15 text-cayce-accent flex items-center justify-center text-xs font-semibold flex-none">${s.num}</div>
-      <div><h5 class="serif-title text-sm text-cayce-text mb-0.5">${esc(s.title)}</h5><p class="text-[11px] text-cayce-muted leading-relaxed">${esc(s.body)}</p></div>
+// ---- Prophecies ----
+async function loadProphecies(){
+  const r=await fetch('/api/prophecies'); const d=await r.json();
+  const statusClass={fulfilled:'status-fulfilled',unfulfilled:'status-unfulfilled',pending:'status-pending'};
+  const statusLabel={fulfilled:'Fulfilled',unfulfilled:'Unfulfilled',pending:'Pending'};
+  document.getElementById('propheciesList').innerHTML=d.map(p=>`
+    <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(p.id)}">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${p.icon}"></i></div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-0.5 flex-wrap">
+            <span class="serif-title text-base text-cayce-accent font-bold">${p.year}</span>
+            <span class="cat-badge ${statusClass[p.status]}">${statusLabel[p.status]}</span>
+          </div>
+          <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(p.title)}</h4>
+          <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(p.summary)}</p>
+        </div>
+        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs mt-2"></i>
+      </div>
+      <div class="expand-body mt-3">
+        <div class="bg-cayce-bg/60 border border-cayce-border rounded-lg p-3 mb-2">
+          <p class="text-[10px] uppercase tracking-widest text-cayce-accent mb-1.5">Reading Excerpt</p>
+          <p class="serif-title text-sm italic text-cayce-text leading-relaxed">${esc(p.excerpt)}</p>
+        </div>
+        <p class="text-xs text-cayce-muted leading-relaxed"><i class="fa-solid fa-circle-info text-cayce-accent mr-1"></i>${esc(p.context)}</p>
+      </div>
     </div>`).join('');
-}
-function newAffirmation(){
-  if(!window._affirmations) return;
-  const a=window._affirmations[Math.floor(Math.random()*window._affirmations.length)];
-  affirmationEl.style.opacity=0;
-  setTimeout(()=>{affirmationEl.textContent='"'+a+'"';affirmationEl.style.opacity=1;},200);
+  document.querySelectorAll('#propheciesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
 }
 
-medToggle.addEventListener('click',()=>{
-  if(!medRunning){
-    medRunning=true; medStateEl.textContent='In attunement'; medToggle.innerHTML='<i class="fa-solid fa-stop"></i> End';
-    newAffirmation();
-    const total=medSec;
-    medTimer=setInterval(()=>{
-      medSec--;
-      renderTimer(); renderProgress(total);
-      if(medSec%60===0 && medSec>0) newAffirmation();
-      if(medSec<=0){endMeditation(true);}
-    },1000);
-  } else { endMeditation(false); }
-});
-function endMeditation(complete){
-  clearInterval(medTimer); medRunning=false;
-  medStateEl.textContent = complete ? 'Complete' : 'Ready';
-  medToggle.innerHTML='<i class="fa-solid fa-play"></i> Begin';
-  if(complete){medSec=medMin*60; renderTimer(); renderProgress(medSec);}
-  else {renderProgress(medSec);}
+// ---- Remedies ----
+async function loadRemedies(){
+  const r=await fetch('/api/remedies'); const d=await r.json();
+  document.getElementById('remediesList').innerHTML=d.map(rem=>`
+    <div class="expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(rem.id)}">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent2/15 to-cayce-accent/10 flex items-center justify-center text-cayce-accent2 text-lg flex-none"><i class="fa-solid ${rem.icon}"></i></div>
+        <div class="flex-1 min-w-0">
+          <span class="cat-badge stat-pill text-cayce-text mb-1 inline-block">${esc(rem.category)}</span>
+          <h4 class="serif-title text-base text-cayce-text leading-tight mt-1">${esc(rem.name)}</h4>
+          <div class="flex flex-wrap gap-1 mt-1.5">
+            ${rem.used_for.map(u=>`<span class="text-[9px] bg-cayce-accent/10 text-cayce-accent px-1.5 py-0.5 rounded">${esc(u)}</span>`).join('')}
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-down chevron text-cayce-muted text-xs mt-2"></i>
+      </div>
+      <div class="expand-body mt-3">
+        <p class="text-[10px] uppercase tracking-widest text-cayce-accent2 mb-1">Protocol</p>
+        <p class="text-xs text-cayce-text leading-relaxed mb-3">${esc(rem.protocol)}</p>
+        <p class="text-[10px] uppercase tracking-widest text-cayce-accent2 mb-1">Modern Science</p>
+        <p class="text-xs text-cayce-muted leading-relaxed mb-3">${esc(rem.science)}</p>
+        <p class="text-[10px] text-cayce-accent3 italic"><i class="fa-solid fa-book mr-1"></i>${esc(rem.reading_ref)}</p>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('#remediesList .expandable').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
 }
-
-// ---- Info modal ----
-const infoModal=document.getElementById('infoModal');
-document.getElementById('infoBtn').addEventListener('click',()=>{infoModal.classList.remove('hidden');});
-document.getElementById('closeInfo').addEventListener('click',()=>{infoModal.classList.add('hidden');});
 
 // ---- Scenarios ----
 async function loadScenarios(){
   try{
     const r=await fetch('/api/scenarios'); const d=await r.json();
     document.getElementById('scenariosList').innerHTML=d.map(s=>`
-      <div class="scenario-card expandable bg-cayce-card border border-cayce-border rounded-xl p-3.5" data-id="${esc(s.id)}">
+      <div class="scenario-card expandable glass-card rounded-xl p-3.5 card-hover" data-id="${esc(s.id)}">
         <div class="flex items-start gap-3">
-          <div class="w-10 h-10 rounded-xl bg-cayce-accent/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${s.icon}"></i></div>
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cayce-accent/15 to-cayce-accent3/10 flex items-center justify-center text-cayce-accent text-lg flex-none"><i class="fa-solid ${s.icon}"></i></div>
           <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 mb-0.5">
-              <span class="serif-title text-base text-cayce-accent font-semibold">${s.year}</span>
-              <span class="text-[9px] uppercase tracking-wider text-cayce-accent2 bg-cayce-accent2/10 px-1.5 py-0.5 rounded">${esc(s.category)}</span>
+            <div class="flex items-center gap-2 mb-0.5 flex-wrap">
+              <span class="serif-title text-base text-cayce-accent font-bold">${s.year}</span>
+              <span class="cat-badge stat-pill text-cayce-text">${esc(s.category)}</span>
             </div>
             <h4 class="serif-title text-base text-cayce-text leading-tight">${esc(s.title)}</h4>
             <p class="text-xs text-cayce-muted leading-snug mt-0.5">${esc(s.summary)}</p>
@@ -544,15 +627,98 @@ async function loadScenarios(){
           <p class="text-xs text-cayce-muted leading-relaxed"><i class="fa-solid fa-circle-info text-cayce-accent mr-1"></i>${esc(s.context)}</p>
         </div>
       </div>`).join('');
-    document.querySelectorAll('#scenariosList .scenario-card').forEach(el=>{
-      el.addEventListener('click',()=>el.classList.toggle('open'));
-    });
+    document.querySelectorAll('#scenariosList .scenario-card').forEach(el=>el.addEventListener('click',()=>el.classList.toggle('open')));
   }catch(e){console.log('scenarios load failed',e)}
 }
 
+// ---- Quotes carousel ----
+let quotes=[],quoteIdx=0,quoteTimer=null;
+async function loadQuotes(){
+  try{
+    const r=await fetch('/api/quotes'); quotes=await r.json();
+    quoteIdx=Math.floor(Math.random()*quotes.length);
+    showQuote();
+    quoteTimer=setInterval(()=>{quoteIdx=(quoteIdx+1)%quotes.length;showQuote();},8000);
+  }catch(e){}
+}
+function showQuote(){
+  if(!quotes.length) return;
+  const el=document.getElementById('quoteText');
+  el.classList.add('out');
+  setTimeout(()=>{ el.textContent='"'+quotes[quoteIdx]+'"'; el.classList.remove('out'); },300);
+}
+
+// ---- Meditate ----
+let medMin=10, medSec=0, medTimer=null, medRunning=false;
+const medProgress=document.getElementById('meditateProgress');
+const medTimerEl=document.getElementById('meditateTimer');
+const medStateEl=document.getElementById('meditateState');
+const medToggle=document.getElementById('meditateToggle');
+const affirmationEl=document.getElementById('affirmationText');
+const CIRC=2*Math.PI*46;
+function renderTimer(){const m=Math.floor(medSec/60), s=medSec%60; medTimerEl.textContent=`${m}:${String(s).padStart(2,'0')}`;}
+function renderProgress(total){const off = total>0 ? CIRC*(1 - medSec/total) : CIRC; medProgress.style.strokeDashoffset=off;}
+document.querySelectorAll('.med-preset').forEach(b=>b.addEventListener('click',()=>{
+  if(medRunning) return;
+  document.querySelectorAll('.med-preset').forEach(x=>{x.classList.remove('active','text-cayce-accent','bg-cayce-accent/10','border-cayce-accent');x.classList.add('text-cayce-muted','border-cayce-border');});
+  b.classList.add('active','text-cayce-accent','bg-cayce-accent/10','border-cayce-accent'); b.classList.remove('text-cayce-muted','border-cayce-border');
+  medMin=parseInt(b.dataset.min); medSec=medMin*60; renderTimer(); renderProgress(medSec*1);
+}));
+async function loadMeditations(){
+  const r=await fetch('/api/meditations'); const d=await r.json();
+  window._affirmations=d.affirmations; window._steps=d.steps;
+  document.getElementById('meditateSteps').innerHTML=d.steps.map(s=>`
+    <div class="glass-card rounded-xl p-3 flex gap-3">
+      <div class="w-6 h-6 rounded-full bg-cayce-accent/15 text-cayce-accent flex items-center justify-center text-xs font-semibold flex-none">${s.num}</div>
+      <div><h5 class="serif-title text-sm text-cayce-text mb-0.5">${esc(s.title)}</h5><p class="text-[11px] text-cayce-muted leading-relaxed">${esc(s.body)}</p></div>
+    </div>`).join('');
+}
+function newAffirmation(){
+  if(!window._affirmations) return;
+  const a=window._affirmations[Math.floor(Math.random()*window._affirmations.length)];
+  affirmationEl.classList.add('out');
+  setTimeout(()=>{affirmationEl.textContent='"'+a+'"';affirmationEl.classList.remove('out');},300);
+}
+medToggle.addEventListener('click',()=>{
+  if(!medRunning){
+    medRunning=true; medStateEl.textContent='In attunement'; medToggle.innerHTML='<i class="fa-solid fa-stop"></i> End';
+    newAffirmation(); const total=medSec;
+    medTimer=setInterval(()=>{
+      medSec--; renderTimer(); renderProgress(total);
+      if(medSec%60===0 && medSec>0) newAffirmation();
+      if(medSec<=0) endMeditation(true);
+    },1000);
+  } else endMeditation(false);
+});
+function endMeditation(complete){
+  clearInterval(medTimer); medRunning=false;
+  medStateEl.textContent = complete ? 'Complete' : 'Ready';
+  medToggle.innerHTML='<i class="fa-solid fa-play"></i> Begin';
+  if(complete){medSec=medMin*60; renderTimer(); renderProgress(medSec);}
+  else renderProgress(medSec);
+}
+
+// ---- Modals ----
+const infoModal=document.getElementById('infoModal');
+const quoteModal=document.getElementById('quoteModal');
+document.getElementById('infoBtn').addEventListener('click',()=>infoModal.classList.remove('hidden'));
+document.getElementById('closeInfo').addEventListener('click',()=>infoModal.classList.add('hidden'));
+document.getElementById('quoteBtn').addEventListener('click',()=>{
+  quoteIdx=(quoteIdx+1)%Math.max(quotes.length,1); showQuote();
+  document.getElementById('modalQuoteText').textContent='"'+quotes[quoteIdx]+'"';
+  quoteModal.classList.remove('hidden');
+});
+document.getElementById('nextQuote').addEventListener('click',()=>{
+  quoteIdx=(quoteIdx+1)%quotes.length; showQuote();
+  document.getElementById('modalQuoteText').textContent='"'+quotes[quoteIdx]+'"';
+});
+document.getElementById('closeQuote').addEventListener('click',()=>quoteModal.classList.add('hidden'));
+// close modals on backdrop click
+[infoModal,quoteModal].forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.add('hidden');}));
+
 // ---- Init ----
 switchView('engage');
-loadChat(); loadLife(); loadAre(); loadReadings(); loadMysteries(); loadMeditations(); loadScenarios();
+loadChat(); loadLife(); loadPeople(); loadAre(); loadReadings(); loadMysteries(); loadProphecies(); loadRemedies(); loadMeditations(); loadScenarios(); loadQuotes();
 renderTimer();
 </script>
 </body>
